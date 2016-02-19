@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSParse Example</title>
+    <script src="JSParse.js"></script>
+</head>
+<body>
+
+<script>
+
+    // 调用示例
+    var exp = "testFunc(testFunc(a+b,b),b) + 3 > test";
+
+    var testInput = new Object();
+    testInput["a"] = 1;
+    testInput["b"] = 2;
+    testInput["test"] = 2;
+
+    console.log("*******单次运算*******");
+    var calcTree = JSParser.build(exp);
+    var result1 = JSParser.calc(NULL_AS_TRUE, calcTree, testInput);
+    console.log("表达式：" + exp5);
+    console.log("结果：" + result1);
+
+    console.log("*******多次运算*******");
+    var start = Date.now();
+    for (var i = 0; i < 10000; i++) {
+        var result2 = calcTree.calc(NULL_AS_TRUE, testInput);
+    }
+    console.log("表达式：" + calcTree.toString());
+    console.log("结果：" + result2);
+    console.log("已运行次数：" + i + "次");
+    console.log("总使用时间：" + (Date.now() - start).toString() + "毫秒");
+
+</script>
+
+</body>
+</html>
