@@ -852,12 +852,13 @@ function genExpSynTaxTree(expArray, pNode, expression) {
         var array = genArrayFromArray(expArray, minRankOpIdx + 1, expArray.length - (minRankOpIdx + 1));
         cNodeArray.push(array);
     } else if (cNode.selfObj.optype == 2) {
-        // 2目运算符生成两个子节点，左右节点不必区分大小
+        // 2目运算符生成两个子节点
         var leftArray = genArrayFromArray(expArray, 0, minRankOpIdx);
         var rightArray = genArrayFromArray(expArray, minRankOpIdx + 1, expArray.length - (minRankOpIdx + 1));
         cNodeArray.push(leftArray);
         cNodeArray.push(rightArray);
     } else if (cNode.selfObj.optype == 3) {
+        // 3目运算符生成三个子节点
         var leftArray = genArrayFromArray(expArray, 0, qMarkOpIdx);
         var middleArray = genArrayFromArray(expArray, qMarkOpIdx + 1, colonOpIdx - (qMarkOpIdx + 1));
         var rightArray = genArrayFromArray(expArray, colonOpIdx + 1, expArray.length - (colonOpIdx + 1));

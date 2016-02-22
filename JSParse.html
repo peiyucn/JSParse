@@ -7,10 +7,14 @@
 </head>
 <body>
 
+<div id="parseTime">
+
+</div>
+
 <script>
 
     // 调用示例
-    var exp = "testFunc(testFunc(a+b,b),b) + 3 > test";
+    var exp = "testFunc(testFunc(a+b,b),b) + 5 > test";
 
     var testInput = new Object();
     testInput["a"] = 1;
@@ -19,8 +23,8 @@
 
     console.log("*******单次运算*******");
     var calcTree = JSParser.build(exp);
-    var result1 = JSParser.calc(NULL_AS_TRUE, calcTree, testInput);
-    console.log("表达式：" + exp5);
+    var result1 = calcTree.calc(NULL_AS_TRUE, testInput);
+    console.log("表达式：" + exp);
     console.log("结果：" + result1);
 
     console.log("*******多次运算*******");
@@ -31,7 +35,14 @@
     console.log("表达式：" + calcTree.toString());
     console.log("结果：" + result2);
     console.log("已运行次数：" + i + "次");
-    console.log("总使用时间：" + (Date.now() - start).toString() + "毫秒");
+
+    var useTime = Date.now() - start;
+
+    console.log("总使用时间：" + useTime.toString() + "毫秒");
+
+    console.log(document.getElementById("parseTime"));
+
+    document.getElementById("parseTime").innerHTML = useTime.toString();
 
 </script>
 
