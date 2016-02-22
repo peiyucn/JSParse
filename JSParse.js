@@ -1,5 +1,5 @@
 /**
- * Created by peiyucn
+ * Created by t-peiyu on 2016/1/26.
  */
 
 /***************************************************
@@ -38,7 +38,7 @@ const NULL_AS_FALSE = false;//标记如果计算变量为空，则条件表达�
 const NULL_AS_TRUE = true;//标记如果计算变量为空，则条件表达式返回真
 
 // 用于测试的表达式对象
-function expTest(expression, expectValue) {
+function ExpTest(expression, expectValue) {
     this.expression = expression;
     this.expectResult = expectValue;
 }
@@ -260,6 +260,13 @@ var parseToNumber = function (nullMode, val) {
     return Number(val);
 };
 
+var parseToInt = function (nullMode, str, radix) {
+    return parseInt(str, radix);
+};
+
+var parseToFloat = function (nullMode, str) {
+    return parseFloat(str);
+};
 
 // 自定义运算 -end ////////////////////////////////////
 
@@ -297,6 +304,8 @@ var GlobalObjs = {
         {"name": "length", "symbol": "length", "rank": "100", "optype": "N", "func": strLength},
         {"name": "isNaN", "symbol": "isNaN", "rank": "100", "optype": "N", "func": isNotNumber},
         {"name": "Number", "symbol": "Number", "rank": "100", "optype": "N", "func": parseToNumber},
+        {"name": "parseInt", "symbol": "parseInt", "rank": "100", "optype": "N", "func": parseToInt},
+        {"name": "parseFloat", "symbol": "parseFloat", "rank": "100", "optype": "N", "func": parseToFloat},
     ],
 
     // 左括号

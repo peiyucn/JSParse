@@ -12,38 +12,44 @@
     var n = "test";
 
     // 测试JSParse功能
-    var exp1 = new expTest("(a+b)*(c+d) > a+b*c+d", true);
-    var exp2 = new expTest("(a+b)*(c+d) + a+b*c+d", 32);
-    var exp3 = new expTest("\"表达式计算结果:\"+((a+b)*(c+d) > a+b*c+d)", "表达式计算结果:true");
-    var exp4 = new expTest("a==1 && b==2 && c==3 && d==4", true);
-    var exp5 = new expTest("-a>0 || !(-b>1 || a>b)", true);
-    var exp6 = new expTest("testFunc(testFunc(a+b,b),b) + 3 > test", false);
-    var exp7 = new expTest("testFunc(testFunc(a+b,b),b) + 3", 2);
-    var exp8 = new expTest("\'表达式计算结果:\'+((a+b)*(c+d) < a+b*c+d)", "表达式计算结果:false");
-    var exp9 = new expTest("\'表达式\"x\"计算结果:\'+((a+b)*(c+d) < a+b*c+d)", "表达式\"x\"计算结果:false");
-    var exp10 = new expTest("\"表达式f(x)计算结果:\"+((a+b)*(c+d) < a+b*c+d)", "表达式f(x)计算结果:false");
-    var exp11 = new expTest("\"表达式\'f(x)\'计算结果:\"+((a+b)*(c+d) < a+b*c+d)", "表达式\'f(x)\'计算结果:false");
-    var exp12 = new expTest("\'表达式\"f(x)\"计算结果:\'+((a+b)*(c+d) > a+b*c+d)", "表达式\"f(x)\"计算结果:true");
-    var exp13 = new expTest("in(arTest,eleTest1) == a<b", true);
-    var exp14 = new expTest("in(arTest,eleTest2) == a<b", false);
-    var exp15 = new expTest("length(lenTest1) - 5", 2);
-    var exp16 = new expTest("asdf", "JSParse Exception: Undefined Variable!");
-    var exp17 = new expTest("e>f", true);
-    var exp18 = new expTest("true", true);
-    var exp19 = new expTest("", true);
-    var exp20 = new expTest(null, true);
-    var exp21 = new expTest(undefined, true);
-    var exp22 = new expTest("\"true\"", "true");
-    var exp23 = new expTest("2>1?true:false", true);
-    var exp24 = new expTest("1>2?true:false", false);
+    var exp1 = new ExpTest("(a+b)*(c+d) > a+b*c+d", true);
+    var exp2 = new ExpTest("(a+b)*(c+d) + a+b*c+d", 32);
+    var exp3 = new ExpTest("\"表达式计算结果:\"+((a+b)*(c+d) > a+b*c+d)", "表达式计算结果:true");
+    var exp4 = new ExpTest("a==1 && b==2 && c==3 && d==4", true);
+    var exp5 = new ExpTest("-a>0 || !(-b>1 || a>b)", true);
+    var exp6 = new ExpTest("testFunc(testFunc(a+b,b),b) + 3 > test", false);
+    var exp7 = new ExpTest("testFunc(testFunc(a+b,b),b) + 3", 2);
+    var exp8 = new ExpTest("\'表达式计算结果:\'+((a+b)*(c+d) < a+b*c+d)", "表达式计算结果:false");
+    var exp9 = new ExpTest("\'表达式\"x\"计算结果:\'+((a+b)*(c+d) < a+b*c+d)", "表达式\"x\"计算结果:false");
+    var exp10 = new ExpTest("\"表达式f(x)计算结果:\"+((a+b)*(c+d) < a+b*c+d)", "表达式f(x)计算结果:false");
+    var exp11 = new ExpTest("\"表达式\'f(x)\'计算结果:\"+((a+b)*(c+d) < a+b*c+d)", "表达式\'f(x)\'计算结果:false");
+    var exp12 = new ExpTest("\'表达式\"f(x)\"计算结果:\'+((a+b)*(c+d) > a+b*c+d)", "表达式\"f(x)\"计算结果:true");
+    var exp13 = new ExpTest("in(arTest,eleTest1) == a<b", true);
+    var exp14 = new ExpTest("in(arTest,eleTest2) == a<b", false);
+    var exp15 = new ExpTest("length(lenTest1) - 5", 2);
+    var exp16 = new ExpTest("asdf", "JSParse Exception: Undefined Variable!");
+    var exp17 = new ExpTest("e>f", true);
+    var exp18 = new ExpTest("true", true);
+    var exp19 = new ExpTest("", true);
+    var exp20 = new ExpTest(null, true);
+    var exp21 = new ExpTest(undefined, true);
+    var exp22 = new ExpTest("\"true\"", "true");
+    var exp23 = new ExpTest("2>1?true:false", true);
+    var exp24 = new ExpTest("1>2?true:false", false);
+    var exp25 = new ExpTest("a*(b+c)>a+b*c?a+b:a+c", 4);
+    var exp26 = new ExpTest("isNaN(test) ? a : b", 2);
+    var exp27 = new ExpTest("Number(g)-a*b", 1022.22);
+    var exp28 = new ExpTest("isNaN(parseFloat(g))", false);
+    var exp29 = new ExpTest("isNaN(parseInt(h))", true);
 
-    var arExpTestOne = [exp23];
+    var arExpTestOne = [];
     var arExp =
             [exp1, exp2, exp3, exp4, exp5,
                 exp6, exp7, exp8, exp9, exp10,
                 exp11, exp12, exp13, exp14, exp15,
                 exp16, exp17, exp18, exp19, exp20,
-                exp21, exp22, exp23, exp24];
+                exp21, exp22, exp23, exp24, exp25,
+                exp26, exp27, exp28, exp29];
 
     var testInput = new Object();
     testInput["a"] = 1;
@@ -57,6 +63,8 @@
     testInput["lenTest1"] = "asdfjkl";
     testInput["e"] = null;
     testInput["f"] = 1;
+    testInput["g"] = "1024.22";
+    testInput["h"] = "test1";
 
     console.log("输入参数值：");
     for (var prop in testInput) {

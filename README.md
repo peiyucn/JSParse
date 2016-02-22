@@ -58,3 +58,14 @@
 
     console.log("表达式："+ calcNode.toString());
     console.log(result);
+
+#### 可扩展的自定义函数
+
+已经支持的自定义函数：
+
+    in(arr,ele) //检查ele是否在数组arr中存在，返回boolean。
+    length(str) //检查字符串str长度，返回int。
+    isNaN(val)  //实现js的isNaN方法。
+    Number(val) //实现js的Number方法。
+    parseInt(str,radix) //实现js的parseInt方法。
+    parseFloat(str) //实现js的parseFloat方法。
