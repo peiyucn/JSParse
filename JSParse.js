@@ -1,5 +1,5 @@
 /**
- * Created by t-peiyu on 2016/1/26.
+ * Created by peiyu.
  */
 
 /***************************************************
@@ -298,7 +298,7 @@ var GlobalObjs = {
         {"name": "IFELSE-2", "symbol": ":", "rank": "10", "optype": "3", "func": calcIFELSE},
         {"name": "IFELSE", "symbol": "?:", "rank": "10", "optype": "3", "func": calcIFELSE},
 
-        // 自定义运算符
+        // 自定义运算符（函数）
         {"name": "testFunc", "symbol": "testFunc", "rank": "100", "optype": "N", "func": testFunc},
         {"name": "in", "symbol": "in", "rank": "100", "optype": "N", "func": eleInArray},
         {"name": "length", "symbol": "length", "rank": "100", "optype": "N", "func": strLength},

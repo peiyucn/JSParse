@@ -41,6 +41,18 @@
     var exp27 = new ExpTest("Number(g)-a*b", 1022.22);
     var exp28 = new ExpTest("isNaN(parseFloat(g))", false);
     var exp29 = new ExpTest("isNaN(parseInt(h))", true);
+    var exp30 = new ExpTest("a/b+c*d", 12.5);
+    var exp31 = new ExpTest("a/(b+c*d)", 1 / 14);
+    var exp32 = new ExpTest("b>=test", true);
+    var exp33 = new ExpTest("c-a<=test", true);
+    var exp34 = new ExpTest("d-a==c", true);
+    var exp35 = new ExpTest("d-a==b", false);
+    var exp36 = new ExpTest("a+b==c && d/b==test && true", true);
+    var exp37 = new ExpTest("a*b>=b || d/test>b || false", true);
+    var exp38 = new ExpTest("a*b>b || d/test>b || false", false);
+    var exp39 = new ExpTest("a!=b", true);
+    var exp40 = new ExpTest("a+b!=c", false);
+    var exp41 = new ExpTest("a+b!=c && d/b==test", false);
 
     var arExpTestOne = [];
     var arExp =
@@ -49,7 +61,10 @@
                 exp11, exp12, exp13, exp14, exp15,
                 exp16, exp17, exp18, exp19, exp20,
                 exp21, exp22, exp23, exp24, exp25,
-                exp26, exp27, exp28, exp29];
+                exp26, exp27, exp28, exp29, exp30,
+                exp31, exp32, exp33, exp34, exp35,
+                exp36, exp37, exp38, exp39, exp40,
+                exp41];
 
     var testInput = new Object();
     testInput["a"] = 1;
