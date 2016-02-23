@@ -443,16 +443,9 @@ function tryGetEleValue(inputObj, propName) {
         return false;
     }
 
-    // 尝试获取变量的值
-    if (typeof inputObj[propName] == "undefined") {
-        throw new Error("JSParse Exception: Undefined Variable!");
-    }
-
     // 如果是空值或空字符串，依然返回。
-    var paramValue = inputObj[propName];
-    return paramValue;
+    return inputObj[propName];
 }
-
 
 // 查找元素数组中的冒号
 function findIFELSEColon(expArray) {
@@ -899,13 +892,21 @@ function buildSyntaxTree(expression) {
 function calcExp(nullMode, inputObj) {
     var pNode = this;// 该方法必须通过Node对象调用
     // 如果节点没有子节点，那么获取节点值准备计算
+
     if (pNode.pChildNodes == null || pNode.pChildNodes.length <= 0) {
         // 如果该节点是对象，则一定是运算符NOP，直接放回NOP计算结果
         if (typeof pNode.selfObj == "object") {
             return pNode.selfObj.func(nullMode);
         }
         // 将叶子节点的变量替换为参数输入值以准备计算
-        return tryGetEleValue(inputObj, pNode.selfObj);
+        var paramValue = tryGetEleValue(inputObj, pNode.selfObj);
+
+        if (typeof paramValue == "undefined" &&
+            pNode.rootExpression == pNode.selfObj) {
+            return nullMode;
+        }
+
+        return paramValue;
     }
 
     // 如果有子节点说明该节点为操作符

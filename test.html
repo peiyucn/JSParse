@@ -27,7 +27,7 @@
     var exp13 = new ExpTest("in(arTest,eleTest1) == a<b", true);
     var exp14 = new ExpTest("in(arTest,eleTest2) == a<b", false);
     var exp15 = new ExpTest("length(lenTest1) - 5", 2);
-    var exp16 = new ExpTest("asdf", "JSParse Exception: Undefined Variable!");
+    var exp16 = new ExpTest("asdf", true);
     var exp17 = new ExpTest("e>f", true);
     var exp18 = new ExpTest("true", true);
     var exp19 = new ExpTest("", true);
@@ -53,6 +53,7 @@
     var exp39 = new ExpTest("a!=b", true);
     var exp40 = new ExpTest("a+b!=c", false);
     var exp41 = new ExpTest("a+b!=c && d/b==test", false);
+    var exp42 = new ExpTest("a>z", true);
 
     var arExpTestOne = [];
     var arExp =
@@ -64,7 +65,7 @@
                 exp26, exp27, exp28, exp29, exp30,
                 exp31, exp32, exp33, exp34, exp35,
                 exp36, exp37, exp38, exp39, exp40,
-                exp41];
+                exp41, exp42];
 
     var testInput = new Object();
     testInput["a"] = 1;
