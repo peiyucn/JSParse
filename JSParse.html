@@ -23,14 +23,14 @@
 
     console.log("*******单次运算*******");
     var calcTree = JSParser.build(exp);
-    var result1 = calcTree.calc(NULL_AS_TRUE, testInput);
+    var result1 = calcTree.calc(true, testInput);
     console.log("表达式：" + exp);
     console.log("结果：" + result1);
 
     console.log("*******多次运算*******");
     var start = Date.now();
     for (var i = 0; i < 10000; i++) {
-        var result2 = calcTree.calc(NULL_AS_TRUE, testInput);
+        var result2 = calcTree.calc(true, testInput);
     }
     console.log("表达式：" + calcTree.toString());
     console.log("结果：" + result2);

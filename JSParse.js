@@ -1,6 +1,4 @@
-/**
- * Created by peiyu.
- */
+// Created by peiyu.
 
 /***************************************************
  * JS表达式解析
@@ -12,9 +10,9 @@
  * 输入参数：
  *      String expression 表达式字符串
  * 返回值：
- *      Node calcNode 用于计算的表达式语法树
+ *      CalcNode calcNode 用于计算的表达式语法树
  *
- * 2. Node.calc(nullMode, inputObj)
+ * 2. CalcNode.calc(nullMode, inputObj)
  * 说明：通过表达式语法树及变量输入值计算表达式返回结果。
  * 输入参数：
  *      Boolean nullMode 当计算变量为空时的表达式返回值
@@ -22,15 +20,15 @@
  * 返回值：
  *      Object result 表达式计算结果
  *
- * 3. Node.toString()
- * 说明：如果Node为root节点，则该方法返回原始表达式字符串，否则返回undefined。
+ * 3. CalcNode.toString()
+ * 说明：CalcNode，则该方法返回原始表达式字符串，否则返回undefined。
  * 输入参数：
  *      无
  * 返回值：
  *      String expression 表达式
  * 调用示例请参考README.md
  ***************************************************/
-
+"use strict";
 
 // 全局变量
 var JSParser = {};//JS表达式分析器对象，调用入口
@@ -41,21 +39,16 @@ const NULL_AS_TRUE = true;//标记如果计算变量为空，则条件表达式�
 function ExpTest(expression, expectValue) {
     this.expression = expression;
     this.expectResult = expectValue;
+    return this;
 }
 
-// 测试期待值与实际值是否全等
+// 测试期待值与实际值是否相等（类型、值）
 function expTestResult(expect, real) {
-    if (expect === real) {
-        return "通过";
-    } else {
-        return "未通过";
-    }
+    return expect === real ? "通过" : "未通过";
 }
 
 /************************************************************************************/
-/*
- * 树结构对象及方法
- */
+// 树结构对象及方法
 
 // node节点对象构造函数
 function CalcNode(Obj, expression) {
@@ -106,7 +99,6 @@ var calcNOT = function (nullMode, varArray) {
     } else {
         return !varArray[0];
     }
-
 };
 
 // 运算符 “-”（负号） 算法
@@ -235,7 +227,8 @@ var eleInArray = function (nullMode, arr, ele) {
         return nullMode;
     }
 
-    for (var i = 0; i < arr.length; i++) {
+    var i;
+    for (i = 0; i < arr.length; i += 1) {
         if (arr[i] == ele) {
             return true;
         }
@@ -305,7 +298,7 @@ var GlobalObjs = {
         {"name": "isNaN", "symbol": "isNaN", "rank": "100", "optype": "N", "func": isNotNumber},
         {"name": "Number", "symbol": "Number", "rank": "100", "optype": "N", "func": parseToNumber},
         {"name": "parseInt", "symbol": "parseInt", "rank": "100", "optype": "N", "func": parseToInt},
-        {"name": "parseFloat", "symbol": "parseFloat", "rank": "100", "optype": "N", "func": parseToFloat},
+        {"name": "parseFloat", "symbol": "parseFloat", "rank": "100", "optype": "N", "func": parseToFloat}
     ],
 
     // 左括号
@@ -337,8 +330,10 @@ var GlobalObjs = {
 
 //根据操作符符号获取操作符json对象
 function getOperatorBySymbol(symbol) {
-    for (var i = 0; i < GlobalObjs.operators.length; i++) {
-        var op = GlobalObjs.operators[i];
+    var i;
+    var op;
+    for (i = 0; i < GlobalObjs.operators.length; i += 1) {
+        op = GlobalObjs.operators[i];
         if (op.symbol == symbol) {
             return op;
         }
@@ -348,8 +343,10 @@ function getOperatorBySymbol(symbol) {
 
 //根据操作符名称获取操作符json对象
 function getOperatorByName(name) {
-    for (var i = 0; i < GlobalObjs.operators.length; i++) {
-        var op = GlobalObjs.operators[i];
+    var i;
+    var op;
+    for (i = 0; i < GlobalObjs.operators.length; i += 1) {
+        op = GlobalObjs.operators[i];
         if (op.name == name) {
             return op;
         }
@@ -359,8 +356,10 @@ function getOperatorByName(name) {
 
 // 判断字符是否与运算符的第index个字符相等
 function isLikeOperator(c, index) {
-    for (var i = 0; i < GlobalObjs.operators.length; i++) {
-        var op = GlobalObjs.operators[i];
+    var i;
+    var op;
+    for (i = 0; i < GlobalObjs.operators.length; i += 1) {
+        op = GlobalObjs.operators[i];
         if (op.symbol.substr(index, 1) == c && op.optype != "N") {
             return true;
         }
@@ -370,8 +369,10 @@ function isLikeOperator(c, index) {
 
 // 判断字符是否与函数的第index个字符相等
 function isLikeFunc(c, index) {
-    for (var i = 0; i < GlobalObjs.operators.length; i++) {
-        var op = GlobalObjs.operators[i];
+    var i;
+    var op;
+    for (i = 0; i < GlobalObjs.operators.length; i += 1) {
+        op = GlobalObjs.operators[i];
         if (op.symbol.substr(index, 1) == c && op.optype == "N") {
             return true;
         }
@@ -381,8 +382,10 @@ function isLikeFunc(c, index) {
 
 // 根据自定义函数名称获取函数预算对象
 function getFuncByName(funcName) {
-    for (var i = 0; i < GlobalObjs.operators.length; i++) {
-        var op = GlobalObjs.operators[i];
+    var i;
+    var op;
+    for (i = 0; i < GlobalObjs.operators.length; i += 1) {
+        op = GlobalObjs.operators[i];
         if (op.name == funcName && op.optype == "N") {
             return op;
         }
@@ -392,9 +395,7 @@ function getFuncByName(funcName) {
 
 
 /************************************************************************************/
-/*
- * 表达式分析与计算
- */
+// 表达式分析与计算
 
 // 改变引号状态
 function changeQuoteStat(qtStep) {
@@ -410,7 +411,8 @@ function changeQuoteStat(qtStep) {
 // 从数组中截取数组
 function genArrayFromArray(expArray, startIdx, len) {
     var tmpArray = [];
-    for (var i = 0; i < len; i++) {
+    var i;
+    for (i = 0; i < len; i += 1) {
         tmpArray.push(expArray[startIdx]);
         startIdx++;
     }
@@ -451,24 +453,11 @@ function tryGetEleValue(inputObj, propName) {
     return paramValue;
 }
 
-// 生成表达式元素数组
-function genExpElementArray(expTmp) {
-    var analyzeStartIdx = 0;
-    var nextAnalyzeIdx = analyzeStartIdx;
-
-    var expElementsArray = [];
-    expAnalyze(expTmp, expElementsArray, nextAnalyzeIdx);
-    if (expElementsArray == null || expElementsArray.length == 0) {
-        return null;
-    }
-
-    return expElementsArray;
-}
 
 // 查找元素数组中的冒号
 function findIFELSEColon(expArray) {
-
-    for (var i = 0; i < expArray.length; i++) {
+    var i;
+    for (i = 0; i < expArray.length; i += 1) {
         if (expArray[i] == ":") {
             return i;
         }
@@ -482,9 +471,10 @@ function findBKStart(expTmp) {
     var qtStep = 0;
     var sqtStep = 0;
     var cIdx = 0;
+    var c;
 
     while (cIdx < expTmp.length) {
-        var c = expTmp.substr(cIdx, 1);
+        c = expTmp.substr(cIdx, 1);
         if (c == GlobalObjs.quote) {
             qtStep = changeQuoteStat(qtStep);
         }
@@ -509,28 +499,28 @@ function findBKEnd(expTmp, bkStartIdx) {
     var qtStep = 0;
     var sqtStep = 0;
     var bkStep = 0;
-
-    bkStep++;
+    var c;
     var runBKAnalyze = true;
+    bkStep += 1;
     do {
         bkEnd++;
         if (bkEnd >= expTmp.length) {
             break;
         }
 
-        var nc = expTmp.substr(bkEnd, 1);
+        c = expTmp.substr(bkEnd, 1);
 
-        if (nc == GlobalObjs.quote) {
+        if (c == GlobalObjs.quote) {
             qtStep = changeQuoteStat(qtStep);
         }
-        if (nc == GlobalObjs.singleQuote) {
+        if (c == GlobalObjs.singleQuote) {
             sqtStep = changeQuoteStat(sqtStep);
         }
 
-        if (nc == GlobalObjs.leftBracket && qtStep == 0 && sqtStep == 0) {
+        if (c == GlobalObjs.leftBracket && qtStep == 0 && sqtStep == 0) {
             bkStep++;
         }
-        if (nc == GlobalObjs.rightBracket && qtStep == 0 && sqtStep == 0) {
+        if (c == GlobalObjs.rightBracket && qtStep == 0 && sqtStep == 0) {
             bkStep--;
         }
 
@@ -560,11 +550,13 @@ function funcParamsAnalyze(params) {
     var bkStep = 0;
     var qtStep = 0;
     var sqtStep = 0;
+    var paramChar;
+    var paramPart;
 
     // 如果参数是常量、变量则放入数组；
     // 如果是表达式或者仍为自定义函数，则不在此继续分析，整体放入数组。
     while (paramNextCharIdx < params.length) {
-        var paramChar = params.substr(paramNextCharIdx, 1);
+        paramChar = params.substr(paramNextCharIdx, 1);
         if (paramChar == GlobalObjs.quote) {
             qtStep = changeQuoteStat(qtStep);
         }
@@ -582,7 +574,7 @@ function funcParamsAnalyze(params) {
         if (paramChar == GlobalObjs.comma &&
             qtStep == 0 && sqtStep == 0 && bkStep == 0) {
             // 将逗号之前的部分取出
-            var paramPart = params.substr(paramNextSubStart, paramNextCharIdx - paramNextSubStart);
+            paramPart = params.substr(paramNextSubStart, paramNextCharIdx - paramNextSubStart);
             paramPart = paramPart.replace(/^\s+|\s+$/g, ""); // 去除首尾空格
             arParam.push(paramPart);
             paramNextSubStart = paramNextCharIdx + 1;
@@ -590,7 +582,7 @@ function funcParamsAnalyze(params) {
 
         if (paramNextCharIdx == params.length - 1) {
             // 分析到最后一位时，没有逗号，直接截取到之前的逗号为最后一个参数
-            var paramPart = params.substr(paramNextSubStart, params.length - paramNextSubStart);
+            paramPart = params.substr(paramNextSubStart, params.length - paramNextSubStart);
             paramPart = paramPart.replace(/^\s+|\s+$/g, ""); // 去除首尾空格
             arParam.push(paramPart);
         }
@@ -599,6 +591,21 @@ function funcParamsAnalyze(params) {
     }
 
     return arParam;
+}
+
+// 判断表达式中的“-”是减号还是负号
+function judgeNGorMINUS(expArray, i) {
+    // 判断在该表达式元素中“-”为负号还是减号
+    if (i == -1 ||
+        expArray[i] == GlobalObjs.leftBracket ||
+        isLikeOperator(expArray[i], 0)) {
+        return getOperatorByName("NG");
+    }
+    if (expArray[i] == GlobalObjs.space) {
+        judgeNGorMINUS(expArray, i - 1);
+    } else {
+        return getOperatorByName("MINUS");
+    }
 }
 
 // 表达式分析方法
@@ -610,23 +617,24 @@ function expAnalyze(expTmp, expElementsArray, nextAnalyzeIdx) {
 
     var qtStep = 0;
     var expChar = expTmp.substr(nextAnalyzeIdx, 1);
+    var qtStartIdx;
+    var qtEndIdx;
+    var qtPart;
+    var nc;
 
     if (expChar == GlobalObjs.quote) {
         qtStep = changeQuoteStat(qtStep);
 
         // 如果遇到双引号
-        var qtStartIdx = expTmp.indexOf(GlobalObjs.quote, nextAnalyzeIdx);
-        var qtEndIdx = -1;
+        qtStartIdx = expTmp.indexOf(GlobalObjs.quote, nextAnalyzeIdx);
+        qtEndIdx = -1;
 
         qtEndIdx = expTmp.indexOf(GlobalObjs.quote, qtStartIdx + 1);
         if (qtEndIdx <= -1) {
             throw new Error("JSParse Exception: Wrong quote numbers!");
         }
-        else {
-            qtStep = changeQuoteStat(qtStep);
-        }
-
-        var qtPart = expTmp.substring(qtStartIdx, qtEndIdx + 1);
+        qtStep = changeQuoteStat(qtStep);
+        qtPart = expTmp.substring(qtStartIdx, qtEndIdx + 1);
         expElementsArray.push(qtPart);
 
         nextAnalyzeIdx = qtEndIdx + 1;
@@ -636,18 +644,15 @@ function expAnalyze(expTmp, expElementsArray, nextAnalyzeIdx) {
         qtStep = changeQuoteStat(qtStep);
 
         // 如果遇到单引号
-        var qtStartIdx = expTmp.indexOf(GlobalObjs.singleQuote, nextAnalyzeIdx);
-        var qtEndIdx = -1;
+        qtStartIdx = expTmp.indexOf(GlobalObjs.singleQuote, nextAnalyzeIdx);
+        qtEndIdx = -1;
 
         qtEndIdx = expTmp.indexOf(GlobalObjs.singleQuote, qtStartIdx + 1);
         if (qtEndIdx <= -1) {
             throw new Error("JSParse Exception: Wrong quote numbers!");
         }
-        else {
-            qtStep = changeQuoteStat(qtStep);
-        }
-
-        var qtPart = expTmp.substring(qtStartIdx, qtEndIdx + 1);
+        qtStep = changeQuoteStat(qtStep);
+        qtPart = expTmp.substring(qtStartIdx, qtEndIdx + 1);
         expElementsArray.push(qtPart);
 
         nextAnalyzeIdx = qtEndIdx + 1;
@@ -681,7 +686,7 @@ function expAnalyze(expTmp, expElementsArray, nextAnalyzeIdx) {
                     break;
                 }
 
-                var nc = expTmp.substr(nextAnalyzeIdx, 1);
+                nc = expTmp.substr(nextAnalyzeIdx, 1);
                 if (isLikeOperator(nc, opIdx)) {
                     runOPAnalyze = true;
                     opIdx++;
@@ -706,18 +711,17 @@ function expAnalyze(expTmp, expElementsArray, nextAnalyzeIdx) {
         var funcIdx = 0;
 
         while (nextAnalyzeIdx < expTmp.length) {
-            var nc = expTmp.substr(nextAnalyzeIdx, 1);
+            nc = expTmp.substr(nextAnalyzeIdx, 1);
             if (isLikeFunc(nc, funcIdx)) {
                 likeFunc = true;
                 funcIdx++;
             } else if (isLikeOperator(nc, 0)) {
                 likeFunc = false;
                 break;
-            } else {
-                if (nc == GlobalObjs.leftBracket) {
-                    likeFunc = true;
-                    break;
-                }
+            }
+            if (nc == GlobalObjs.leftBracket) {
+                likeFunc = true;
+                break;
             }
             nextAnalyzeIdx++;
         }
@@ -740,6 +744,19 @@ function expAnalyze(expTmp, expElementsArray, nextAnalyzeIdx) {
 
 }
 
+// 生成表达式元素数组
+function genExpElementArray(expTmp) {
+    var nextAnalyzeIdx = 0;
+
+    var expElementsArray = [];
+    expAnalyze(expTmp, expElementsArray, nextAnalyzeIdx);
+    if (expElementsArray == null || expElementsArray.length == 0) {
+        return null;
+    }
+
+    return expElementsArray;
+}
+
 // 表达式语法树构建方法
 function genExpSynTaxTree(expArray, pNode, expression) {
 
@@ -749,6 +766,10 @@ function genExpSynTaxTree(expArray, pNode, expression) {
     var qMarkOpIdx = 0;
     var colonOpIdx = 0;
     var cNodeArray = [];
+    var i, j, k;
+    var array, leftArray, rightArray, middleArray;
+    var op;
+    var arParam;
 
     if (expArray.length == 1) {
         // 如果数组中只有一个元素，那么则可能是叶子节点或未分析完成的表达式,或是自定义函数
@@ -785,21 +806,8 @@ function genExpSynTaxTree(expArray, pNode, expression) {
     }
 
     // 找出当前表达式元素数组中优先级最低的操作符
-    var judgeNGorMINUS = function (expArray, i) {
-        // 判断在该表达式元素中“-”为负号还是减号
-        if (i == -1 ||
-            expArray[i] == GlobalObjs.leftBracket ||
-            isLikeOperator(expArray[i], 0)) {
-            return getOperatorByName("NG");
-        } else if (expArray[i] == GlobalObjs.space) {
-            judgeNGorMINUS(expArray, i - 1);
-        } else {
-            return getOperatorByName("MINUS");
-        }
-    };
-
-    for (var i = 0; i < expArray.length; i++) {
-        var op = getOperatorBySymbol(expArray[i]);
+    for (i = 0; i < expArray.length; i += 1) {
+        op = getOperatorBySymbol(expArray[i]);
         if (op == null) {
             continue; //如果不是操作符则继续寻找
         }
@@ -815,7 +823,7 @@ function genExpSynTaxTree(expArray, pNode, expression) {
 
             colonOpIdx = findIFELSEColon(expArray);
             if (colonOpIdx == -1) {
-                throw new Error("JSParse Exception: Wrong expression!")
+                throw new Error("JSParse Exception: Wrong expression!");
             }
 
             minRankOp = getOperatorBySymbol("?:");
@@ -849,31 +857,31 @@ function genExpSynTaxTree(expArray, pNode, expression) {
 
     if (cNode.selfObj.optype == 1) {
         // 1目运算符只生成一个子节点
-        var array = genArrayFromArray(expArray, minRankOpIdx + 1, expArray.length - (minRankOpIdx + 1));
+        array = genArrayFromArray(expArray, minRankOpIdx + 1, expArray.length - (minRankOpIdx + 1));
         cNodeArray.push(array);
     } else if (cNode.selfObj.optype == 2) {
         // 2目运算符生成两个子节点
-        var leftArray = genArrayFromArray(expArray, 0, minRankOpIdx);
-        var rightArray = genArrayFromArray(expArray, minRankOpIdx + 1, expArray.length - (minRankOpIdx + 1));
+        leftArray = genArrayFromArray(expArray, 0, minRankOpIdx);
+        rightArray = genArrayFromArray(expArray, minRankOpIdx + 1, expArray.length - (minRankOpIdx + 1));
         cNodeArray.push(leftArray);
         cNodeArray.push(rightArray);
     } else if (cNode.selfObj.optype == 3) {
         // 3目运算符生成三个子节点
-        var leftArray = genArrayFromArray(expArray, 0, qMarkOpIdx);
-        var middleArray = genArrayFromArray(expArray, qMarkOpIdx + 1, colonOpIdx - (qMarkOpIdx + 1));
-        var rightArray = genArrayFromArray(expArray, colonOpIdx + 1, expArray.length - (colonOpIdx + 1));
+        leftArray = genArrayFromArray(expArray, 0, qMarkOpIdx);
+        middleArray = genArrayFromArray(expArray, qMarkOpIdx + 1, colonOpIdx - (qMarkOpIdx + 1));
+        rightArray = genArrayFromArray(expArray, colonOpIdx + 1, expArray.length - (colonOpIdx + 1));
         cNodeArray.push(leftArray);
         cNodeArray.push(middleArray);
         cNodeArray.push(rightArray);
     } else if (cNode.selfObj.optype == "N") {
-        for (var i = 0; i < expArray.length; i++) {
-            var arParam = [expArray[i]]; // 同运算符逻辑保持一致，即使自定义函数参数都作为一个元素整体处理，仍然放到数组中。
+        for (j = 0; j < expArray.length; j += 1) {
+            arParam = [expArray[j]]; // 同运算符逻辑保持一致，即使自定义函数参数都作为一个元素整体处理，仍然放到数组中。
             cNodeArray.push(arParam);
         }
     }
 
-    for (var j = 0; j < cNodeArray.length; j++) {
-        genExpSynTaxTree(cNodeArray[j], cNode, expression);
+    for (k = 0; k < cNodeArray.length; k += 1) {
+        genExpSynTaxTree(cNodeArray[k], cNode, expression);
     }
     return pNode;
 }
@@ -893,13 +901,11 @@ function calcExp(nullMode, inputObj) {
     // 如果节点没有子节点，那么获取节点值准备计算
     if (pNode.pChildNodes == null || pNode.pChildNodes.length <= 0) {
         // 如果该节点是对象，则一定是运算符NOP，直接放回NOP计算结果
-        var a = typeof pNode.selfObj;
         if (typeof pNode.selfObj == "object") {
             return pNode.selfObj.func(nullMode);
         }
         // 将叶子节点的变量替换为参数输入值以准备计算
-        var paramValue = tryGetEleValue(inputObj, pNode.selfObj);
-        return paramValue;
+        return tryGetEleValue(inputObj, pNode.selfObj);
     }
 
     // 如果有子节点说明该节点为操作符
@@ -914,9 +920,12 @@ function calcExp(nullMode, inputObj) {
         varArray.push(nullMode);
     }
 
-    for (var i = 0; i < pNode.pChildNodes.length; i++) {
-        var cNode = pNode.pChildNodes[i];
-        var result = cNode.calc(nullMode, inputObj);//递归计算子节点
+    var i;
+    var cNode;
+    var result;
+    for (i = 0; i < pNode.pChildNodes.length; i += 1) {
+        cNode = pNode.pChildNodes[i];
+        result = cNode.calc(nullMode, inputObj);//递归计算子节点
         varArray.push(result);
     }
 

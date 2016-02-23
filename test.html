@@ -95,7 +95,7 @@
         var calcTree = null;
         try {
             calcTree = JSParser.build(val.expression);
-            result = calcTree.calc(NULL_AS_TRUE, testInput);
+            result = calcTree.calc(true, testInput);
         } catch (err) {
             result = err.message;
         }
