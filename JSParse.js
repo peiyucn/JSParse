@@ -43,9 +43,9 @@ function ExpTest(expression, expectValue) {
     this.expectResult = expectValue;
 }
 
-// 测试期待值与实际值是否相等（类型、值）
+// 测试期待值与实际值是否全等
 function expTestResult(expect, real) {
-    if (typeof expect == typeof real && expect == real) {
+    if (expect === real) {
         return "通过";
     } else {
         return "未通过";
@@ -58,7 +58,7 @@ function expTestResult(expect, real) {
  */
 
 // node节点对象构造函数
-function Node(Obj, expression) {
+function CalcNode(Obj, expression) {
     this.selfObj = Obj;
     this.rootExpression = expression;
     this.pChildNodes = [];
@@ -66,14 +66,14 @@ function Node(Obj, expression) {
 
 // 创建新节点
 function createNode(value, expression) {
-    var pNode = new Node(value, expression);
+    var pNode = new CalcNode(value, expression);
     pNode.selfObj = value;
     pNode.rootExpression = expression;
     return pNode;
 }
 
 // 在节点下添加节点
-Node.prototype.addNode = function (value) {
+CalcNode.prototype.addNode = function (value) {
     if (this == null) {
         return createNode(value);
     }
@@ -83,13 +83,13 @@ Node.prototype.addNode = function (value) {
     this.pChildNodes.push(value);
 };
 
-Node.prototype.toString = function () {
+CalcNode.prototype.toString = function () {
     var exp = this.rootExpression;
     return exp;
 };
 
 function isUndefinedOrNullOrEmpty(ele) {
-    return (typeof(ele) == "undefined" || ele == null || ele.length <= 0);
+    return (typeof ele == "undefined" || ele == null || ele.length <= 0);
 }
 
 /************************************************************************************/
@@ -231,7 +231,7 @@ var testFunc = function (nullMode, v1, v2) {
 };
 
 var eleInArray = function (nullMode, arr, ele) {
-    if (typeof(ele) == "undefined" || ele == null) {
+    if (typeof ele == "undefined" || ele == null) {
         return nullMode;
     }
 
@@ -245,7 +245,7 @@ var eleInArray = function (nullMode, arr, ele) {
 };
 
 var strLength = function (nullMode, str) {
-    if (typeof(str) == "undefined" || str == null) {
+    if (typeof str == "undefined" || str == null) {
         return 0;
     }
 
@@ -936,4 +936,4 @@ function calcExp(nullMode, inputObj) {
 JSParser.build = buildSyntaxTree;
 
 // 表达式计算接口
-Node.prototype.calc = calcExp;
+CalcNode.prototype.calc = calcExp;

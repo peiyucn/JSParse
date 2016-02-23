@@ -18,9 +18,9 @@
 
   返回值：
   
-    Node calcNode 用于计算的表达式语法树
+    CalcNode calcNode 用于计算的表达式语法树
 
-##### 2. Node.calc(nullMode, inputObj);
+##### 2. CalcNode.calc(nullMode, inputObj);
   说明：通过表达式语法树及变量输入值计算表达式返回结果。
   
   输入参数：
@@ -32,7 +32,7 @@
   
     Object result 表达式计算结果
 
-##### 3. Node.toString()
+##### 3. CalcNode.toString()
   说明：如果Node为root节点，则该方法返回原始表达式字符串，否则返回undefined。
   
   输入参数：
