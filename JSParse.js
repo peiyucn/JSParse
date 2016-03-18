@@ -28,7 +28,7 @@
  *      String expression 表达式
  * 调用示例请参考README.md
  ***************************************************/
-"use strict";
+"use strict"; // 严格模式
 
 // 全局变量
 var JSParser = {};//JS表达式分析器对象，调用入口
@@ -265,10 +265,8 @@ var parseToFloat = function (nullMode, str) {
 
 
 var GlobalObjs = {
-
     // 运算符
     "operators": [
-
         // 空运算符
         {"name": "NOP", "symbol": "nop", "rank": "0", "optype": "0", "func": calcNOP},
 
@@ -285,8 +283,24 @@ var GlobalObjs = {
         {"name": "GE", "symbol": ">=", "rank": "50", "optype": "2", "func": calcGE},
         {"name": "EQ", "symbol": "==", "rank": "40", "optype": "2", "func": calcEQ},
         {"name": "NEQ", "symbol": "!=", "rank": "40", "optype": "2", "func": calcNEQ},
-        {"name": "AND", "symbol": "&&", "rank": "30", "optype": "2", "func": calcAND},
-        {"name": "OR", "symbol": "||", "rank": "20", "optype": "2", "func": calcOR},
+        {
+            "name": "AND", "symbol": "&&", "rank": "30", "optype": "2", "func": calcAND, "sfunc": function (p) {
+            if (!p) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        },
+        {
+            "name": "OR", "symbol": "||", "rank": "20", "optype": "2", "func": calcOR, "sfunc": function (p) {
+            if (p) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        },
         {"name": "IFELSE-1", "symbol": "?", "rank": "10", "optype": "3", "func": calcIFELSE},
         {"name": "IFELSE-2", "symbol": ":", "rank": "10", "optype": "3", "func": calcIFELSE},
         {"name": "IFELSE", "symbol": "?:", "rank": "10", "optype": "3", "func": calcIFELSE},
@@ -927,6 +941,13 @@ function calcExp(nullMode, inputObj) {
     for (i = 0; i < pNode.pChildNodes.length; i += 1) {
         cNode = pNode.pChildNodes[i];
         result = cNode.calc(nullMode, inputObj);//递归计算子节点
+
+        // 执行具备短路判断的运算符进行短路判断
+        if (!isUndefinedOrNullOrEmpty(pOP.sfunc)) {
+            if (pOP.sfunc(result)) {
+                return result;
+            }
+        }
         varArray.push(result);
     }
 
