@@ -1,6 +1,15 @@
-# JSParse.js
+# JSParse.js [![build status][travis-image]][travis-url] [![GitHub release][release-image]][release-url] [![GitHub license][license-image]][license-url]
 A JS Logical expressions calculator components.
 一个JS实现的逻辑运算表达式计算器组件。
+
+[See the demo.](http://peiyucn.github.io/JSParse/src/JSParse.html)
+
+[Expressions test.](http://peiyucn.github.io/JSParse/test/test.html)
+
+## Downloads
+[![JSParse.js][download-image]][download-url]
+
+[![JSParse.min.js][download-min-image]][download-min-url]
 
 ## Usage 调用示例
   
@@ -63,3 +72,15 @@ A JS Logical expressions calculator components.
     Number(val) //实现js的Number方法。
     parseInt(str,radix) //实现js的parseInt方法。
     parseFloat(str) //实现js的parseFloat方法。
+
+
+[travis-image]: https://travis-ci.org/peiyucn/JSParse.svg?branch=master
+[travis-url]: https://travis-ci.org/peiyucn/JSParse
+[release-image]: https://img.shields.io/github/release/peiyucn/JSParse.svg
+[release-url]: https://github.com/peiyucn/JSParse/releases/
+[license-image]: https://img.shields.io/badge/license-MIT-blue.svg
+[license-url]: https://raw.githubusercontent.com/peiyucn/JSParse/master/LICENSE
+[download-image]: https://img.shields.io/badge/Code-JSParse.js-brightgreen.svg
+[download-url]: https://peiyucn.github.io/JSParse/src/JSParse.js
+[download-min-image]: https://img.shields.io/badge/Code-JSParse.min.js-brightgreen.svg
+[download-min-url]: https://peiyucn.github.io/JSParse/src/JSParse.min.js
