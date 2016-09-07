@@ -46,13 +46,13 @@
 
   **调用示例**
   
-    //页面引用JSParse.js
-    var exp = "testFunc(testFunc(a+b,b),b) + 3 > test";
+    <script src="JSParse.min.js"></script>
+    var exp = "a + 2 > b";
     var testInput = new Object();
     testInput["a"] = 1;
     testInput["b"] = 2;
-    testInput["test"] = 2;
 
+    var JSParser = new JSParse();//创建表达式计算对象
     var calcNode = JSParser.build(exp); //生成语法树
     var result = calcNode.calc(NULL_AS_TRUE, testInput); //计算表达式
 

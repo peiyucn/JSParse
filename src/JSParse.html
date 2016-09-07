@@ -7,43 +7,36 @@
 </head>
 <body>
 
-<div id="parseTime">
+<div id="testResult">
 
 </div>
 
 <script>
-    // 调用示例
-    var exp = "testFunc(testFunc(a+b,b),b) + 5 > test";
-
+    var testTxt = "";
+    var exp = "a + 2 > b";
     var testInput = new Object();
     testInput["a"] = 1;
     testInput["b"] = 2;
-    testInput["test"] = 2;
 
+    // 调用示例
     var JSParser = new JSParse();
-
-    console.log("*******单次运算*******");
     var calcTree = JSParser.build(exp);
-    var result1 = calcTree.calc(true, testInput);
-    console.log("表达式：" + exp);
-    console.log("结果：" + result1);
+    var result = calcTree.calc(true, testInput);
 
-    console.log("*******多次运算*******");
+    testTxt += ("表达式：" + exp) + "<br>";
+    testTxt += ("参数值：<br>");
+    for (var prop in testInput) {
+        testTxt += (prop + "=" + testInput[prop] + "<br>");
+    }
+    testTxt += ("结果：" + result) + "<br>";
+
     var start = Date.now();
     for (var i = 0; i < 10000; i++) {
-        var result2 = calcTree.calc(true, testInput);
+        calcTree.calc(true, testInput);
     }
-    console.log("表达式：" + calcTree.toString());
-    console.log("结果：" + result2);
-    console.log("已运行次数：" + i + "次");
-
     var useTime = Date.now() - start;
-
-    console.log("总使用时间：" + useTime.toString() + "毫秒");
-
-    console.log(document.getElementById("parseTime"));
-
-    document.getElementById("parseTime").innerHTML = useTime.toString();
+    testTxt += ("性能：运行" + i + "次使用" + useTime.toString() + "毫秒") + "<br>";
+    document.getElementById("testResult").innerHTML = testTxt;
 
 </script>
 
