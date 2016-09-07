@@ -1,49 +1,28 @@
-// Created by peiyu.
-
-/***************************************************
- * JS表达式解析
- * 说明：JS版的规则表达式分析与执行器，除常规运算符外，还支持自定义函数扩展。
- *      支持的运算可查看全局变量GlobalObjs。
- *
- * 1. JSParser.build(expression)
- * 说明：根据表达式字符串生成可用于计算的表达式语法树。
- * 输入参数：
- *      String expression 表达式字符串
- * 返回值：
- *      CalcNode calcNode 用于计算的表达式语法树
- *
- * 2. CalcNode.calc(nullMode, inputObj)
- * 说明：通过表达式语法树及变量输入值计算表达式返回结果。
- * 输入参数：
- *      Boolean nullMode 当计算变量为空时的表达式返回值
- *      Object inputObj 用户输入的变量对象
- * 返回值：
- *      Object result 表达式计算结果
- *
- * 3. CalcNode.toString()
- * 说明：CalcNode，则该方法返回原始表达式字符串，否则返回undefined。
- * 输入参数：
- *      无
- * 返回值：
- *      String expression 表达式
- * 调用示例请参考README.md
- ***************************************************/
-//"use strict"; // 严格模式
-var NULL_AS_TRUE = true;
-var NULL_AS_FALSE = false;
+/**
+ * Copyright (c) 2016 Pei Yu
+ * Licensed under the MIT license
+ * https://github.com/peiyucn/JSParse
+ */
 
 //JS表达式分析器对象
-var JSParser = (function () {
+;(function (root, factory) {
+    root.JSParse = factory();
+}(this, function () {
+
+    // 构造函数
+    function JSParse() {
+
+    }
 
     // 用于测试的表达式对象
-    this.ExpTest = function (expression, expectValue) {
+    JSParse.prototype.ExpTest = function (expression, expectValue) {
         this.expression = expression;
         this.expectResult = expectValue;
         return this;
     };
 
     // 测试期待值与实际值是否相等（类型、值）
-    this.expTestResult = function (expect, real) {
+    JSParse.prototype.expTestResult = function (expect, real) {
         return expect === real ? "通过" : "未通过";
     };
 
@@ -100,7 +79,7 @@ var JSParser = (function () {
             return !varArray[0];
         }
     };
-    
+
     // 运算符 “-”（负号） 算法
     var calcNG = function (nullMode, varArray) {
         if (isUndefinedOrNullOrEmpty(varArray)) {
@@ -921,7 +900,7 @@ var JSParser = (function () {
 
     // 根据表达式生成可计算的语法树
     // 表达式分析接口
-    this.build = function (expression) {
+    JSParse.prototype.build = function (expression) {
         if (isUndefinedOrNullOrEmpty(expression)) {
             return createNode(getOperatorByName("NOP"), expression);
         }
@@ -989,6 +968,5 @@ var JSParser = (function () {
         return rs;
     };
 
-    return this;
-
-}());
+    return JSParse;
+}));

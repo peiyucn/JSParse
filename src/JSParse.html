@@ -20,6 +20,8 @@
     testInput["b"] = 2;
     testInput["test"] = 2;
 
+    var JSParser = new JSParse();
+
     console.log("*******单次运算*******");
     var calcTree = JSParser.build(exp);
     var result1 = calcTree.calc(true, testInput);

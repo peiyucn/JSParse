@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>JSParse Test</title>
-    <script src="JSParse.js"></script>
+    <script src="../src/JSParse.js"></script>
 </head>
 <body>
+<h1>JSParse Test</h1>
+<hr>
+<div id="testResult">
+</div>
 
 <script>
-
+    var JSParser = new JSParse();
     // 测试JSParse功能
     var exp1 = new JSParser.ExpTest("(a+b)*(c+d) > a+b*c+d", true);
     var exp2 = new JSParser.ExpTest("(a+b)*(c+d) + a+b*c+d", 32);
@@ -56,16 +60,16 @@
     var exp44 = new JSParser.ExpTest("a==2 && b==2 && c==3 && d==4", false);
 
     var arExpTestOne = [];
-        var arExp =
-                [exp1, exp2, exp3, exp4, exp5,
-                    exp6, exp7, exp8, exp9, exp10,
-                    exp11, exp12, exp13, exp14, exp15,
-                    exp16, exp17, exp18, exp19, exp20,
-                    exp21, exp22, exp23, exp24, exp25,
-                    exp26, exp27, exp28, exp29, exp30,
-                    exp31, exp32, exp33, exp34, exp35,
-                    exp36, exp37, exp38, exp39, exp40,
-                    exp41, exp42, exp43, exp44];
+    var arExp =
+            [exp1, exp2, exp3, exp4, exp5,
+                exp6, exp7, exp8, exp9, exp10,
+                exp11, exp12, exp13, exp14, exp15,
+                exp16, exp17, exp18, exp19, exp20,
+                exp21, exp22, exp23, exp24, exp25,
+                exp26, exp27, exp28, exp29, exp30,
+                exp31, exp32, exp33, exp34, exp35,
+                exp36, exp37, exp38, exp39, exp40,
+                exp41, exp42, exp43, exp44];
 
     var testInput = new Object();
     testInput["a"] = 1;
@@ -82,14 +86,22 @@
     testInput["g"] = "1024.22";
     testInput["h"] = "test1";
 
-    console.log("输入参数值：");
+    var testPlace = document.getElementById("testResult");
+
+    var testParams = document.createElement("div");
+    var testParam = "";
+
+    testParam += ("输入参数值：<br>");
     for (var prop in testInput) {
-        console.log(prop + "=" + testInput[prop]);
+        testParam += (prop + "=" + testInput[prop] + "<br>");
     }
-    console.log("\n");
+    testParam += "<br>"
+    testParams.innerHTML = testParam;
+    testPlace.appendChild(testParams);
 
     var testConsole = function (val, idx, arr) {
-        console.log("****************测试" + (idx + 1) + "****************");
+        var testTxt = "";
+        testTxt += "****************测试" + (idx + 1) + "****************" + "<br>";
         var startTime = Date.now();
 
         var result = null;
@@ -101,14 +113,19 @@
             result = err.message;
         }
 
-        console.log("表达式：" + calcTree.toString());
-        console.log("期待值：" + val.expectResult);
-        console.log("实际值：" + result);
-        console.log("期待值类型：" + typeof val.expectResult);
-        console.log("实际值类型：" + typeof result);
-        console.log("使用时间：" + (Date.now() - startTime).toString() + "毫秒");
-        console.log("测试结果：" + expTestResult(val.expectResult, result));
-        console.log("\n");
+        testTxt += ("表达式：" + calcTree.toString()) + "<br>";
+        testTxt += ("期待值：" + val.expectResult) + "<br>";
+        testTxt += ("实际值：" + result) + "<br>";
+        testTxt += ("期待值类型：" + typeof val.expectResult) + "<br>";
+        testTxt += ("实际值类型：" + typeof result) + "<br>";
+        testTxt += ("使用时间：" + (Date.now() - startTime).toString() + "毫秒") + "<br>";
+        testTxt += ("测试结果：" + JSParser.expTestResult(val.expectResult, result)) + "<br>";
+        testTxt += "<br>";
+
+        var testPart = document.createElement("div");
+        testPart.id = "result" + (idx + 1);
+        testPart.innerHTML = testTxt;
+        testPlace.appendChild(testPart);
     };
 
 
