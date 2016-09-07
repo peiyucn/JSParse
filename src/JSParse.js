@@ -8,24 +8,10 @@
 ;(function (root, factory) {
     root.JSParse = factory();
 }(this, function () {
-
     // 构造函数
     function JSParse() {
 
     }
-
-    // 用于测试的表达式对象
-    JSParse.prototype.ExpTest = function (expression, expectValue) {
-        this.expression = expression;
-        this.expectResult = expectValue;
-        return this;
-    };
-
-    // 测试期待值与实际值是否相等（类型、值）
-    JSParse.prototype.expTestResult = function (expect, real) {
-        return expect === real ? "通过" : "未通过";
-    };
-
     /************************************************************************************/
     // 树结构对象及方法
 
