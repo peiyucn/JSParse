@@ -1,10 +1,24 @@
 # JSParse.js
 A JS Logical expressions calculator components.
+一个JS实现的逻辑运算表达式计算器组件。
+
+## Usage 调用示例
   
-  **说明**
-  **JS版的规则表达式分析与执行器，除常规运算符外，还支持自定义函数扩展。**
-  **可调用的方法列表如下**
-  
+    <script src="JSParse.min.js"></script>
+    var exp = "a + 2 > b";
+    var testInput = new Object();
+    testInput["a"] = 1;
+    testInput["b"] = 2;
+
+    var JSParser = new JSParse();//创建表达式计算对象
+    var calcNode = JSParser.build(exp); //生成语法树
+    var result = calcNode.calc(NULL_AS_TRUE, testInput); //计算表达式
+
+    console.log("表达式："+ calcNode.toString());
+    console.log(result);
+
+## Methods 方法
+
 ### 1. JSParse.build(expression);
   说明：根据表达式字符串生成可用于计算的表达式语法树。
   
@@ -39,23 +53,7 @@ A JS Logical expressions calculator components.
   
     String expression 表达式
 
-
-##调用示例
-  
-    <script src="JSParse.min.js"></script>
-    var exp = "a + 2 > b";
-    var testInput = new Object();
-    testInput["a"] = 1;
-    testInput["b"] = 2;
-
-    var JSParser = new JSParse();//创建表达式计算对象
-    var calcNode = JSParser.build(exp); //生成语法树
-    var result = calcNode.calc(NULL_AS_TRUE, testInput); //计算表达式
-
-    console.log("表达式："+ calcNode.toString());
-    console.log(result);
-
-##可扩展的自定义函数
+## Custom Operator 可扩展的自定义运算符（函数）
 
 已经支持的自定义函数：
 
