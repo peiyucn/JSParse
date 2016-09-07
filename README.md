@@ -9,7 +9,7 @@
   **JS版的规则表达式分析与执行器，除常规运算符外，还支持自定义函数扩展。**
   **可调用的方法列表如下**
   
-##### 1. JSParse.build(expression);
+#### 1. JSParse.build(expression);
   说明：根据表达式字符串生成可用于计算的表达式语法树。
   
   输入参数：
@@ -20,7 +20,7 @@
   
     CalcNode calcNode 用于计算的表达式语法树
 
-##### 2. CalcNode.calc(nullMode, inputObj);
+#### 2. CalcNode.calc(nullMode, inputObj);
   说明：通过表达式语法树及变量输入值计算表达式返回结果。
   
   输入参数：
@@ -32,7 +32,7 @@
   
     Object result 表达式计算结果
 
-##### 3. CalcNode.toString()
+#### 3. CalcNode.toString()
   说明：如果Node为root节点，则该方法返回原始表达式字符串，否则返回undefined。
   
   输入参数：
@@ -44,7 +44,7 @@
     String expression 表达式
 
 
-  **调用示例**
+##调用示例
   
     <script src="JSParse.min.js"></script>
     var exp = "a + 2 > b";
@@ -59,7 +59,7 @@
     console.log("表达式："+ calcNode.toString());
     console.log(result);
 
-#### 可扩展的自定义函数
+##可扩展的自定义函数
 
 已经支持的自定义函数：
 
