@@ -1,9 +1,5 @@
-# JsParse
-  **项目文件：**
-  
-    JSParse.js (JSParse分析器js库)
-    JSParse.html (调用示例)
-    test.html (单元测试)
+# JSParse.js
+A JS Logical expressions calculator components.
   
   **说明**
   **JS版的规则表达式分析与执行器，除常规运算符外，还支持自定义函数扩展。**
