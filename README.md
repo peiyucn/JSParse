@@ -15,7 +15,7 @@ A JS Logical expressions calculator components.
 ## Usage 调用示例
 ```javascript
 var exp = "a + 2 > b";
-var testInput = new Object();
+var testInput = {};
 testInput["a"] = 1;
 testInput["b"] = 2;
 
