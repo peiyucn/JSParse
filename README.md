@@ -79,7 +79,7 @@ A JS Logical expressions calculator components.
 |   4                |  >=               | 大于等于 |
 |   5                |  ==               | 等于 |
 |   5                |  !=               | 不等于 |
-|   6                |  ?:               | 条件表达式 |
+|   6                |  ? :              | 条件表达式 |
 
 
 ## Custom Operators 可扩展的自定义运算符
