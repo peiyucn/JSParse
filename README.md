@@ -63,7 +63,26 @@ A JS Logical expressions calculator components.
   
     String expression 表达式
 
-## Custom Operator 可扩展的自定义运算符（函数）
+## Supported Operators 已支持的运算符
+
+| 优先级（precedence） | 运算符（operator） | 说明（description） |
+| ------------------ | ----------------- | ------------------ |
+|  :1:               |  !                | 非 |
+|  :1:               |  -                | 负 |
+|  :2:               |  *                | 乘 |
+|  :2:               |  /                | 除 |
+|  :3:               |  +                | 加 |
+|  :3:               |  -                | 减 |
+|  :4:               |  <                | 小于 |
+|  :4:               |  <=               | 小于等于 |
+|  :4:               |  >                | 大于 |
+|  :4:               |  >=               | 大于等于 |
+|  :5:               |  ==               | 等于 |
+|  :5:               |  !=               | 不等于 |
+|  :6:               |  ?:               | 条件表达式 |
+
+
+## Custom Operators 可扩展的自定义运算符
 
 已经支持的自定义函数：
 

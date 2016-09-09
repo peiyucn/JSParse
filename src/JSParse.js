@@ -285,7 +285,7 @@
             }
             },
             {
-                "name": "OR", "symbol": "||", "rank": "20", "optype": "2", "func": calcOR, "sfunc": function (p) {
+                "name": "OR", "symbol": "||", "rank": "30", "optype": "2", "func": calcOR, "sfunc": function (p) {
                 if (p) {
                     return true;
                 } else {
