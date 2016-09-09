@@ -13,20 +13,19 @@ A JS Logical expressions calculator components.
 [![JSParse.min.js][download-min-image]][download-min-url]
 
 ## Usage 调用示例
-  
-    <script src="JSParse.min.js"></script>
-    var exp = "a + 2 > b";
-    var testInput = new Object();
-    testInput["a"] = 1;
-    testInput["b"] = 2;
+```javascript
+var exp = "a + 2 > b";
+var testInput = new Object();
+testInput["a"] = 1;
+testInput["b"] = 2;
 
-    var JSParser = new JSParse();//创建表达式计算对象
-    var calcNode = JSParser.build(exp); //生成语法树
-    var result = calcNode.calc(NULL_AS_TRUE, testInput); //计算表达式
+var JSParser = new JSParse();//创建表达式计算对象
+var calcNode = JSParser.build(exp); //生成语法树
+var result = calcNode.calc(true, testInput); //计算表达式
 
-    console.log("表达式："+ calcNode.toString());
-    console.log(result);
-
+console.log("表达式："+ calcNode.toString());
+console.log(result);
+```
 ## Methods 方法
 
 ### 1. JSParse.build(expression);
