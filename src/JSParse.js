@@ -12,6 +12,7 @@
     function JSParse() {
 
     }
+
     /************************************************************************************/
     // 树结构对象及方法
 
@@ -90,6 +91,15 @@
             return null;
         }
         return varArray[0] / varArray[1];
+    };
+
+    // 运算符 “%” 算法
+    var calcMOD = function (nullMode, varArray) {
+        if (isUndefinedOrNullOrEmpty(varArray[0]) ||
+            isUndefinedOrNullOrEmpty(varArray[1])) {
+            return null;
+        }
+        return varArray[0] % varArray[1];
     };
 
     // 运算符 “+” 算法
@@ -267,6 +277,7 @@
             {"name": "NG", "symbol": "-", "rank": "80", "optype": "1", "func": calcNG},
             {"name": "MUTI", "symbol": "*", "rank": "70", "optype": "2", "func": calcMUTI},
             {"name": "DIV", "symbol": "/", "rank": "70", "optype": "2", "func": calcDIV},
+            {"name": "MOD", "symbol": "%", "rank": "70", "optype": "2", "func": calcMOD},
             {"name": "PLUS", "symbol": "+", "rank": "60", "optype": "2", "func": calcPLUS},
             {"name": "MINUS", "symbol": "-", "rank": "60", "optype": "2", "func": calcMINUS},
             {"name": "LT", "symbol": "<", "rank": "50", "optype": "2", "func": calcLT},
