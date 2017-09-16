@@ -53,11 +53,6 @@
 
     /************************************************************************************/
 
-    //运算符nop算法
-    var calcNOP = function (nullMode) {
-        return nullMode;
-    };
-
     // 运算符 “!” 算法
     var calcNOT = function (nullMode, varArray) {
         if (isUndefinedOrNullOrEmpty(varArray[0])) {
@@ -269,8 +264,6 @@
     var GlobalObjs = {
         // 运算符
         "operators": [
-            // 空运算符
-            {"name": "NOP", "symbol": "nop", "rank": "0", "optype": "0", "func": calcNOP},
 
             // 常规运算符
             {"name": "NOT", "symbol": "!", "rank": "80", "optype": "1", "func": calcNOT},
