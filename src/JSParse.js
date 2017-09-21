@@ -259,6 +259,14 @@
         return parseFloat(str);
     };
 
+    var splitExt = function (nullMode, str, splitChar, returnIndex) {
+        if (isUndefinedOrNullOrEmpty(str)) {
+            return nullMode;
+        }
+        var arValues = str.split(splitChar);
+        return arValues[returnIndex];
+    };
+
 // 自定义运算 -end ////////////////////////////////////
 
     var GlobalObjs = {
@@ -308,7 +316,8 @@
             {"name": "isNaN", "symbol": "isNaN", "rank": "100", "optype": "N", "func": isNotNumber},
             {"name": "Number", "symbol": "Number", "rank": "100", "optype": "N", "func": parseToNumber},
             {"name": "parseInt", "symbol": "parseInt", "rank": "100", "optype": "N", "func": parseToInt},
-            {"name": "parseFloat", "symbol": "parseFloat", "rank": "100", "optype": "N", "func": parseToFloat}
+            {"name": "parseFloat", "symbol": "parseFloat", "rank": "100", "optype": "N", "func": parseToFloat},
+            {"name": "splitExt", "symbol": "splitExt", "rank": "100", "optype": "N", "func": splitExt}
         ],
 
         // 左括号

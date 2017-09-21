@@ -3,7 +3,7 @@
   "description": "A JS Logical expressions calculator components.",
   "author": "Pei Yu",
   "license": "MIT License",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "private": true,
   "scripts": {
     "prestart": "npm install",

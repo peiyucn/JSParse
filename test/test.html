@@ -62,6 +62,8 @@
     var exp45 = new ExpTest("d%3", 1);
     var exp46 = new ExpTest("indSSProvince != 310000", true);
     var exp47 = new ExpTest("amount > 10000", true);
+    var exp48 = new ExpTest("splitExt('10-Y','-',1)", "Y");
+    var exp49 = new ExpTest("splitExt('20-A','-',0)", "20");
 
     var arExpTestOne = [];
     var arExp =
@@ -73,7 +75,8 @@
             exp26, exp27, exp28, exp29, exp30,
             exp31, exp32, exp33, exp34, exp35,
             exp36, exp37, exp38, exp39, exp40,
-            exp41, exp42, exp43, exp44, exp45, exp46, exp47];
+            exp41, exp42, exp43, exp44, exp45,
+            exp46, exp47, exp48, exp49];
 
     var testInput = new Object();
     testInput["a"] = 1;
@@ -91,6 +94,11 @@
     testInput["h"] = "test1";
     testInput["indSSProvince"] = 123;
     testInput["amount"] = 10001;
+    testInput["splitTest1"] = "10-Y";
+    testInput["splitTest2"] = "20-A";
+    testInput["separator"] = "-";
+    testInput["splitTest1Idx"] = 1;
+    testInput["splitTest2Idx"] = 0;
 
     var testPlace = document.getElementById("testResult");
 
@@ -112,6 +120,7 @@
 
         var result = null;
         var calcTree = null;
+
         try {
             calcTree = JSParser.build(val.expression);
             result = calcTree.calc(true, testInput);
