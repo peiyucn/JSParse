@@ -6,7 +6,7 @@ A JS Logical expressions calculator components.
 
 一个JS实现的逻辑运算表达式计算器组件。
 
-[See the demo.](http://peiyucn.github.io/JSParse/src/JSParse.html)
+[Performance demo.](http://peiyucn.github.io/JSParse/src/JSParse.html)
 
 [Unit test page.](http://peiyucn.github.io/JSParse/test/test.html)
 
