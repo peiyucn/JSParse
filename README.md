@@ -1,18 +1,23 @@
-# JSParse.js [![build status][travis-image]][travis-url] [![GitHub release][release-image]][release-url] [![GitHub license][license-image]][license-url]
+# JSParse.js
+
+[![build status][travis-image]][travis-url] [![GitHub release][release-image]][release-url] [![GitHub license][license-image]][license-url]
+
 A JS Logical expressions calculator components.
 
 一个JS实现的逻辑运算表达式计算器组件。
 
 [See the demo.](http://peiyucn.github.io/JSParse/src/JSParse.html)
 
-[Expressions test.](http://peiyucn.github.io/JSParse/test/test.html)
+[Unit test page.](http://peiyucn.github.io/JSParse/test/test.html)
 
 ## Downloads
+
 [![JSParse.js][download-image]][download-url]
 
 [![JSParse.min.js][download-min-image]][download-min-url]
 
 ## Usage 调用示例
+
 ```javascript
 var exp = "a + 2 > b";
 var testInput = {};
@@ -26,6 +31,7 @@ var result = calcNode.calc(true, testInput); //计算表达式
 console.log("表达式："+ calcNode.toString());
 console.log(result);
 ```
+
 ## Methods 方法
 
 ### 1. JSParse.build(expression);
@@ -39,7 +45,8 @@ console.log(result);
   
     CalcNode calcNode 用于计算的表达式语法树
 
-### 2. CalcNode.calc(nullMode, inputObj);
+### 2. CalcNode.calc(nullMode, inputObj)
+
   说明：通过表达式语法树及变量输入值计算表达式返回结果。
   
   params 输入参数：
@@ -52,6 +59,7 @@ console.log(result);
     Object result 表达式计算结果
 
 ### 3. CalcNode.toString()
+
   说明：如果Node为root节点，则该方法返回原始表达式字符串，否则返回undefined。
   
   params 输入参数：
