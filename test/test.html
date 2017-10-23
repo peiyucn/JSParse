@@ -1,153 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>JSParse Test</title>
     <script src="../src/JSParse.js"></script>
     <script src="exptest.js"></script>
 </head>
+
 <body>
-<h1>JSParse Test</h1>
-<hr>
-<div id="testResult">
-</div>
+    <h1>JSParse Test</h1>
+    <hr>
+    <div id="testResult">
+    </div>
 
-<script>
-    var JSParser = new JSParse();
-    // 测试JSParse功能
-    var exp1 = new ExpTest("(a+b)*(c+d) > a+b*c+d", true);
-    var exp2 = new ExpTest("(a+b)*(c+d) + a+b*c+d", 32);
-    var exp3 = new ExpTest("\"表达式计算结果:\"+((a+b)*(c+d) > a+b*c+d)", "表达式计算结果:true");
-    var exp4 = new ExpTest("a==1 && b==2 && c==3 && d==4", true);
-    var exp5 = new ExpTest("-a>0 || !(-b>1 || a>b)", true);
-    var exp6 = new ExpTest("testFunc(testFunc(a+b,b),b) + 3 > test", false);
-    var exp7 = new ExpTest("testFunc(testFunc(a+b,b),b) + 3", 2);
-    var exp8 = new ExpTest("\'表达式计算结果:\'+((a+b)*(c+d) < a+b*c+d)", "表达式计算结果:false");
-    var exp9 = new ExpTest("\'表达式\"x\"计算结果:\'+((a+b)*(c+d) < a+b*c+d)", "表达式\"x\"计算结果:false");
-    var exp10 = new ExpTest("\"表达式f(x)计算结果:\"+((a+b)*(c+d) < a+b*c+d)", "表达式f(x)计算结果:false");
-    var exp11 = new ExpTest("\"表达式\'f(x)\'计算结果:\"+((a+b)*(c+d) < a+b*c+d)", "表达式\'f(x)\'计算结果:false");
-    var exp12 = new ExpTest("\'表达式\"f(x)\"计算结果:\'+((a+b)*(c+d) > a+b*c+d)", "表达式\"f(x)\"计算结果:true");
-    var exp13 = new ExpTest("in(arTest,eleTest1) == a<b", true);
-    var exp14 = new ExpTest("in(arTest,eleTest2) == a<b", false);
-    var exp15 = new ExpTest("length(lenTest1) - 5", 2);
-    var exp16 = new ExpTest("asdf", true);
-    var exp17 = new ExpTest("e>f", true);
-    var exp18 = new ExpTest("true", true);
-    var exp19 = new ExpTest("", true);
-    var exp20 = new ExpTest(null, true);
-    var exp21 = new ExpTest(undefined, true);
-    var exp22 = new ExpTest("\"true\"", "true");
-    var exp23 = new ExpTest("2>1?true:false", true);
-    var exp24 = new ExpTest("1>2?true:false", false);
-    var exp25 = new ExpTest("a*(b+c)>a+b*c?a+b:a+c", 4);
-    var exp26 = new ExpTest("isNaN(test) ? a : b", 2);
-    var exp27 = new ExpTest("Number(g)-a*b", 1022.22);
-    var exp28 = new ExpTest("isNaN(parseFloat(g))", false);
-    var exp29 = new ExpTest("isNaN(parseInt(h))", true);
-    var exp30 = new ExpTest("a/b+c*d", 12.5);
-    var exp31 = new ExpTest("a/(b+c*d)", 1 / 14);
-    var exp32 = new ExpTest("b>=test", true);
-    var exp33 = new ExpTest("c-a<=test", true);
-    var exp34 = new ExpTest("d-a==c", true);
-    var exp35 = new ExpTest("d-a==b", false);
-    var exp36 = new ExpTest("a+b==c && d/b==test && true", true);
-    var exp37 = new ExpTest("a*b>=b || d/test>b || false", true);
-    var exp38 = new ExpTest("a*b>b || d/test>b || false", false);
-    var exp39 = new ExpTest("a!=b", true);
-    var exp40 = new ExpTest("a+b!=c", false);
-    var exp41 = new ExpTest("a+b!=c && d/b==test", false);
-    var exp42 = new ExpTest("a>z", true);
-    var exp43 = new ExpTest("a==1 || b==9 || c==8 || d==0", true);
-    var exp44 = new ExpTest("a==2 && b==2 && c==3 && d==4", false);
-    var exp45 = new ExpTest("d%3", 1);
-    var exp46 = new ExpTest("indSSProvince != 310000", true);
-    var exp47 = new ExpTest("amount > 10000", true);
-    var exp48 = new ExpTest("splitExt('10-Y','-',1)", "Y");
-    var exp49 = new ExpTest("splitExt('20-A','-',0)", "20");
+    <script>
+        var JSParser = new JSParse();
+        // 测试JSParse功能
+        var exp1 = new ExpTest("(a+b)*(c+d) > a+b*c+d", true);
+        var exp2 = new ExpTest("(a+b)*(c+d) + a+b*c+d", 32);
+        var exp3 = new ExpTest("\"表达式计算结果:\"+((a+b)*(c+d) > a+b*c+d)", "表达式计算结果:true");
+        var exp4 = new ExpTest("a==1 && b==2 && c==3 && d==4", true);
+        var exp5 = new ExpTest("-a>0 || !(-b>1 || a>b)", true);
+        var exp6 = new ExpTest("testFunc(testFunc(a+b,b),b) + 3 > test", false);
+        var exp7 = new ExpTest("testFunc(testFunc(a+b,b),b) + 3", 2);
+        var exp8 = new ExpTest("\'表达式计算结果:\'+((a+b)*(c+d) < a+b*c+d)", "表达式计算结果:false");
+        var exp9 = new ExpTest("\'表达式\"x\"计算结果:\'+((a+b)*(c+d) < a+b*c+d)", "表达式\"x\"计算结果:false");
+        var exp10 = new ExpTest("\"表达式f(x)计算结果:\"+((a+b)*(c+d) < a+b*c+d)", "表达式f(x)计算结果:false");
+        var exp11 = new ExpTest("\"表达式\'f(x)\'计算结果:\"+((a+b)*(c+d) < a+b*c+d)", "表达式\'f(x)\'计算结果:false");
+        var exp12 = new ExpTest("\'表达式\"f(x)\"计算结果:\'+((a+b)*(c+d) > a+b*c+d)", "表达式\"f(x)\"计算结果:true");
+        var exp13 = new ExpTest("in(arTest,eleTest1) == a<b", true);
+        var exp14 = new ExpTest("in(arTest,eleTest2) == a<b", false);
+        var exp15 = new ExpTest("length(lenTest1) - 5", 2);
+        var exp16 = new ExpTest("asdf", true);
+        var exp17 = new ExpTest("e>f", true);
+        var exp18 = new ExpTest("true", true);
+        var exp19 = new ExpTest("", true);
+        var exp20 = new ExpTest(null, true);
+        var exp21 = new ExpTest(undefined, true);
+        var exp22 = new ExpTest("\"true\"", "true");
+        var exp23 = new ExpTest("2>1?true:false", true);
+        var exp24 = new ExpTest("1>2?true:false", false);
+        var exp25 = new ExpTest("a*(b+c)>a+b*c?a+b:a+c", 4);
+        var exp26 = new ExpTest("isNaN(test) ? a : b", 2);
+        var exp27 = new ExpTest("Number(g)-a*b", 1022.22);
+        var exp28 = new ExpTest("isNaN(parseFloat(g))", false);
+        var exp29 = new ExpTest("isNaN(parseInt(h))", true);
+        var exp30 = new ExpTest("a/b+c*d", 12.5);
+        var exp31 = new ExpTest("a/(b+c*d)", 1 / 14);
+        var exp32 = new ExpTest("b>=test", true);
+        var exp33 = new ExpTest("c-a<=test", true);
+        var exp34 = new ExpTest("d-a==c", true);
+        var exp35 = new ExpTest("d-a==b", false);
+        var exp36 = new ExpTest("a+b==c && d/b==test && true", true);
+        var exp37 = new ExpTest("a*b>=b || d/test>b || false", true);
+        var exp38 = new ExpTest("a*b>b || d/test>b || false", false);
+        var exp39 = new ExpTest("a!=b", true);
+        var exp40 = new ExpTest("a+b!=c", false);
+        var exp41 = new ExpTest("a+b!=c && d/b==test", false);
+        var exp42 = new ExpTest("a>z", true);
+        var exp43 = new ExpTest("a==1 || b==9 || c==8 || d==0", true);
+        var exp44 = new ExpTest("a==2 && b==2 && c==3 && d==4", false);
+        var exp45 = new ExpTest("d%3", 1);
+        var exp46 = new ExpTest("indSSProvince != 310000", true);
+        var exp47 = new ExpTest("amount > 10000", true);
+        var exp48 = new ExpTest("splitExt('10-Y','-',1)", "Y");
+        var exp49 = new ExpTest("splitExt('20-A','-',0)", "20");
+        var exp50 = new ExpTest("min(10,20)", 10);
+        var exp51 = new ExpTest("max(10,20)", 20);
 
-    var arExpTestOne = [];
-    var arExp =
-        [exp1, exp2, exp3, exp4, exp5,
-            exp6, exp7, exp8, exp9, exp10,
-            exp11, exp12, exp13, exp14, exp15,
-            exp16, exp17, exp18, exp19, exp20,
-            exp21, exp22, exp23, exp24, exp25,
-            exp26, exp27, exp28, exp29, exp30,
-            exp31, exp32, exp33, exp34, exp35,
-            exp36, exp37, exp38, exp39, exp40,
-            exp41, exp42, exp43, exp44, exp45,
-            exp46, exp47, exp48, exp49];
+        var arExpTestOne = [];
+        var arExp =
+            [
+                exp1, exp2, exp3, exp4, exp5,
+                exp6, exp7, exp8, exp9, exp10,
+                exp11, exp12, exp13, exp14, exp15,
+                exp16, exp17, exp18, exp19, exp20,
+                exp21, exp22, exp23, exp24, exp25,
+                exp26, exp27, exp28, exp29, exp30,
+                exp31, exp32, exp33, exp34, exp35,
+                exp36, exp37, exp38, exp39, exp40,
+                exp41, exp42, exp43, exp44, exp45,
+                exp46, exp47, exp48, exp49, exp50,
+                exp51
+            ];
 
-    var testInput = new Object();
-    testInput["a"] = 1;
-    testInput["b"] = 2;
-    testInput["c"] = 3;
-    testInput["d"] = 4;
-    testInput["test"] = 2;
-    testInput["arTest"] = ["a", "b", "c", "d"];
-    testInput["eleTest1"] = "a";
-    testInput["eleTest2"] = "e";
-    testInput["lenTest1"] = "asdfjkl";
-    testInput["e"] = null;
-    testInput["f"] = 1;
-    testInput["g"] = "1024.22";
-    testInput["h"] = "test1";
-    testInput["indSSProvince"] = 123;
-    testInput["amount"] = 10001;
-    testInput["splitTest1"] = "10-Y";
-    testInput["splitTest2"] = "20-A";
-    testInput["separator"] = "-";
-    testInput["splitTest1Idx"] = 1;
-    testInput["splitTest2Idx"] = 0;
+        var testInput = new Object();
+        testInput["a"] = 1;
+        testInput["b"] = 2;
+        testInput["c"] = 3;
+        testInput["d"] = 4;
+        testInput["test"] = 2;
+        testInput["arTest"] = ["a", "b", "c", "d"];
+        testInput["eleTest1"] = "a";
+        testInput["eleTest2"] = "e";
+        testInput["lenTest1"] = "asdfjkl";
+        testInput["e"] = null;
+        testInput["f"] = 1;
+        testInput["g"] = "1024.22";
+        testInput["h"] = "test1";
+        testInput["indSSProvince"] = 123;
+        testInput["amount"] = 10001;
+        testInput["splitTest1"] = "10-Y";
+        testInput["splitTest2"] = "20-A";
+        testInput["separator"] = "-";
+        testInput["splitTest1Idx"] = 1;
+        testInput["splitTest2Idx"] = 0;
 
-    var testPlace = document.getElementById("testResult");
+        var testPlace = document.getElementById("testResult");
 
-    var testParams = document.createElement("div");
-    var testParam = "";
+        var testParams = document.createElement("div");
+        var testParam = "";
 
-    testParam += ("输入参数值：<br>");
-    for (var prop in testInput) {
-        testParam += (prop + "=" + testInput[prop] + "<br>");
-    }
-    testParam += "<br>";
-    testParams.innerHTML = testParam;
-    testPlace.appendChild(testParams);
-
-    var testConsole = function (val, idx, arr) {
-        var testTxt = "";
-        testTxt += "****************测试" + (idx + 1) + "****************" + "<br>";
-        var startTime = Date.now();
-
-        var result = null;
-        var calcTree = null;
-
-        try {
-            calcTree = JSParser.build(val.expression);
-            result = calcTree.calc(true, testInput);
-        } catch (err) {
-            result = err.message;
+        testParam += ("输入参数值：<br>");
+        for (var prop in testInput) {
+            testParam += (prop + "=" + testInput[prop] + "<br>");
         }
+        testParam += "<br>";
+        testParams.innerHTML = testParam;
+        testPlace.appendChild(testParams);
 
-        testTxt += ("表达式：" + calcTree.toString()) + "<br>";
-        testTxt += ("期待值：" + val.expectResult) + "<br>";
-        testTxt += ("实际值：" + result) + "<br>";
-        testTxt += ("期待值类型：" + typeof val.expectResult) + "<br>";
-        testTxt += ("实际值类型：" + typeof result) + "<br>";
-        testTxt += ("使用时间：" + (Date.now() - startTime).toString() + "毫秒") + "<br>";
-        testTxt += ("测试结果：" + expTestResult(val.expectResult, result)) + "<br>";
-        testTxt += "<br>";
+        var testConsole = function (val, idx, arr) {
+            var testTxt = "";
+            testTxt += "****************测试" + (idx + 1) + "****************" + "<br>";
+            var startTime = Date.now();
 
-        var testPart = document.createElement("div");
-        testPart.id = "result" + (idx + 1);
-        testPart.innerHTML = testTxt;
-        testPlace.appendChild(testPart);
-    };
+            var result = null;
+            var calcTree = null;
+
+            try {
+                calcTree = JSParser.build(val.expression);
+                result = calcTree.calc(true, testInput);
+            } catch (err) {
+                result = err.message;
+            }
+
+            testTxt += ("表达式：" + calcTree.toString()) + "<br>";
+            testTxt += ("期待值：" + val.expectResult) + "<br>";
+            testTxt += ("实际值：" + result) + "<br>";
+            testTxt += ("期待值类型：" + typeof val.expectResult) + "<br>";
+            testTxt += ("实际值类型：" + typeof result) + "<br>";
+            testTxt += ("使用时间：" + (Date.now() - startTime).toString() + "毫秒") + "<br>";
+            testTxt += ("测试结果：" + expTestResult(val.expectResult, result)) + "<br>";
+            testTxt += "<br>";
+
+            var testPart = document.createElement("div");
+            testPart.id = "result" + (idx + 1);
+            testPart.innerHTML = testTxt;
+            testPlace.appendChild(testPart);
+        };
 
 
-    arExpTestOne.forEach(testConsole);
-    arExp.forEach(testConsole);
+        arExpTestOne.forEach(testConsole);
+        arExp.forEach(testConsole);
 
-</script>
+    </script>
 
 </body>
+
 </html>
