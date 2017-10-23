@@ -101,6 +101,8 @@ Already supported 已经支持的自定义函数：
     parseInt(str,radix) //实现js的parseInt方法。
     parseFloat(str) //实现js的parseFloat方法。
     splitExt(str, splitChar, returnIndex) //实现字符串分隔方法，指定返回分隔后的某个字符。
+    min(number1, number2) //实现数值比较，返回最小者。
+    max(number1, number2) //实现数值比较，返回最大者。
 
 
 [travis-image]: https://travis-ci.org/peiyucn/JSParse.svg?branch=master
