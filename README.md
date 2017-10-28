@@ -48,7 +48,7 @@ console.log("表达式："+ calcNode.toString());
 console.log(result);
 ```
 
-## Methods 方法
+## API 方法
 
 ### 1. JSParse.build(expression);
   说明：根据表达式字符串生成可用于计算的表达式语法树。
