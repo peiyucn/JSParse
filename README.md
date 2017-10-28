@@ -1,4 +1,4 @@
-# JSParse-bom.js
+# JSParse
 
 [![build status][travis-image]][travis-url] [![GitHub release][release-image]][release-url] [![GitHub license][license-image]][license-url]
 
