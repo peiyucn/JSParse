@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSParse BOM Example</title>
+    <script src="JSParse-bom.js"></script>
+</head>
+<body>
+
+<div id="testResult">
+
+</div>
+
+<script>
+    var testTxt = "";
+    var exp = "prd.prd568.amount + prd.prd569.amount + b > 20000";
+    var prd = {
+        "prd568": {
+            "amount": 10000
+        },
+        "prd569": {
+            "amount": 10000
+        }
+    };
+    var calcVars = {};
+    calcVars["prd"] = prd;
+    calcVars["b"] = 1000;
+
+    // 调用示例
+    var JSParser = new JSParse();
+    var calcNode = JSParser.build(exp);
+    var result = calcNode.calc(false, calcVars);
+
+    testTxt += ("表达式：" + exp) + "<br>";
+    testTxt += ("参数值：<br>");
+    for (var prop in calcVars) {
+        testTxt += (prop + "=" + JSON.stringify(calcVars[prop]) + "<br>");
+    }
+    testTxt += ("结果：" + result) + "<br>";
+
+    var start = Date.now();
+    for (var count = 0; count < 10000; count += 1) {
+        calcNode.calc(false, calcVars);
+    }
+    var useTime = Date.now() - start;
+    testTxt += ("性能：运行" + count + "次使用" + useTime.toString() + "毫秒") + "<br>";
+    document.getElementById("testResult").innerHTML = testTxt;
+
+
+</script>
+
+</body>
+</html>

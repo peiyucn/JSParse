@@ -1,4 +1,4 @@
-# JSParse.js
+# JSParse-bom.js
 
 [![build status][travis-image]][travis-url] [![GitHub release][release-image]][release-url] [![GitHub license][license-image]][license-url]
 
@@ -6,27 +6,43 @@ A JS Logical expressions calculator components.
 
 一个JS实现的逻辑运算表达式计算器组件。
 
-[Performance demo.](http://peiyucn.github.io/JSParse/src/JSParse.html)
+[Performance demo.](http://peiyucn.github.io/JSParse/src/bom/JSParse-bom.html)
 
 [Unit test page.](http://peiyucn.github.io/JSParse/test/test.html)
 
 ## Downloads
 
+> Not Support BOM
+
 [![JSParse.js][download-image]][download-url]
 
 [![JSParse.min.js][download-min-image]][download-min-url]
 
+> Support BOM
+
+[![JSParse-bom.js][download-bom-image]][download-bom-url]
+
+[![JSParse-bom.min.js][download-bom-min-image]][download-bom-min-url]
+
 ## Usage 调用示例
 
 ```javascript
-var exp = "a + 2 > b";
-var testInput = {};
-testInput["a"] = 1;
-testInput["b"] = 2;
+var exp = "prd.prd568.amount + prd.prd569.amount + b > 20000";
+var prd = {
+    "prd568":{
+        "amount":10000
+    },
+    "prd569":{
+        "amount":10000
+    }
+};
+var calcVars = {};
+calcVars["prd"] = prd;
+calcVars["b"] = 1000;
 
 var JSParser = new JSParse();//创建表达式计算对象
 var calcNode = JSParser.build(exp); //生成语法树
-var result = calcNode.calc(true, testInput); //计算表达式
+var result = calcNode.calc(false, calcVars); //计算表达式
 
 console.log("表达式："+ calcNode.toString());
 console.log(result);
@@ -45,14 +61,14 @@ console.log(result);
   
     CalcNode calcNode 用于计算的表达式语法树
 
-### 2. CalcNode.calc(nullMode, inputObj)
+### 2. CalcNode.calc(nullMode, calcVars)
 
   说明：通过表达式语法树及变量输入值计算表达式返回结果。
   
   params 输入参数：
   
     Boolean nullMode 当计算变量为空时的表达式返回值
-    Object inputObj 用户输入的变量对象
+    Object calcVars 参与计算的变量集
 
   return 返回值：
   
@@ -112,6 +128,10 @@ Already supported 已经支持的自定义函数：
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: https://raw.githubusercontent.com/peiyucn/JSParse/master/LICENSE
 [download-image]: https://img.shields.io/badge/Code-JSParse.js-brightgreen.svg
-[download-url]: https://peiyucn.github.io/JSParse/src/JSParse.js
+[download-url]: https://peiyucn.github.io/JSParse/src/nobom/JSParse.js
 [download-min-image]: https://img.shields.io/badge/Code-JSParse.min.js-brightgreen.svg
-[download-min-url]: https://peiyucn.github.io/JSParse/src/JSParse.min.js
+[download-min-url]: https://peiyucn.github.io/JSParse/src/nobom/JSParse.min.js
+[download-bom-image]: https://img.shields.io/badge/Code-JSParse--bom.js-brightgreen.svg
+[download-bom-url]: https://peiyucn.github.io/JSParse/src/bom/JSParse-bom.js
+[download-bom-min-image]: https://img.shields.io/badge/Code-JSParse--bom.min.js-brightgreen.svg
+[download-bom-min-url]: https://peiyucn.github.io/JSParse/src/bom/JSParse-bom.min.js
