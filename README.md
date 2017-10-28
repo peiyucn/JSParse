@@ -6,11 +6,20 @@ A JS Logical expressions calculator components.
 
 一个JS实现的逻辑运算表达式计算器组件。
 
-[Performance demo.](http://peiyucn.github.io/JSParse/src/bom/JSParse-bom.html)
+<!-- TOC -->
 
-[Unit test page.](http://peiyucn.github.io/JSParse/test/test.html)
+- [Downloads 下载](#downloads-下载)
+- [Usage 调用示例](#usage-调用示例)
+- [API 方法](#api-方法)
+    - [JSParse.build(expression);](#jsparsebuildexpression)
+    - [CalcNode.calc(nullMode, calcVars)](#calcnodecalcnullmode-calcvars)
+    - [CalcNode.toString()](#calcnodetostring)
+- [Supported Operators 已支持的运算符](#supported-operators-已支持的运算符)
+- [Custom Operators 可扩展的自定义运算符](#custom-operators-可扩展的自定义运算符)
 
-## Downloads
+<!-- /TOC -->
+
+## Downloads 下载
 
 > Not Support BOM
 
@@ -25,6 +34,8 @@ A JS Logical expressions calculator components.
 [![JSParse-bom.min.js][download-bom-min-image]][download-bom-min-url]
 
 ## Usage 调用示例
+
+[Performance Demo](http://peiyucn.github.io/JSParse/src/bom/JSParse-bom.html)
 
 ```javascript
 var exp = "prd.prd568.amount + prd.prd569.amount + b > 20000";
@@ -50,7 +61,7 @@ console.log(result);
 
 ## API 方法
 
-### 1. JSParse.build(expression);
+### JSParse.build(expression);
   说明：根据表达式字符串生成可用于计算的表达式语法树。
   
   params 输入参数：
@@ -61,7 +72,7 @@ console.log(result);
   
     CalcNode calcNode 用于计算的表达式语法树
 
-### 2. CalcNode.calc(nullMode, calcVars)
+### CalcNode.calc(nullMode, calcVars)
 
   说明：通过表达式语法树及变量输入值计算表达式返回结果。
   
@@ -74,7 +85,7 @@ console.log(result);
   
     Object result 表达式计算结果
 
-### 3. CalcNode.toString()
+### CalcNode.toString()
 
   说明：如果Node为root节点，则该方法返回原始表达式字符串，否则返回undefined。
   
@@ -104,7 +115,6 @@ console.log(result);
 |  ==             | 等于 |
 |  !=             | 不等于 |
 |  ? :            | 条件表达式 |
-
 
 ## Custom Operators 可扩展的自定义运算符
 
