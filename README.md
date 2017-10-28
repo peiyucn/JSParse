@@ -35,7 +35,7 @@ A JS Logical expressions calculator components.
 
 ## Usage 调用示例
 
-[Performance Demo](http://peiyucn.github.io/JSParse/src/bom/JSParse-bom.html)
+[Performance Demo](https://peiyucn.github.io/JSParse/src/bom/JSParse-bom.html)
 
 ```javascript
 var exp = "prd.prd568.amount + prd.prd569.amount + b > 20000";
