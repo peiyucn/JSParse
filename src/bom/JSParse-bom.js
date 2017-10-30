@@ -490,7 +490,7 @@
         // 支持指定对象内属性的变量
         var props = calcVar.split('.');
         var tmpVal = calcVarValObj;
-        for (i = 0; i < props.length; i += 1) {
+        for (var i = 0; i < props.length; i += 1) {
             tmpVal = tmpVal[props[i]];
         }
 
