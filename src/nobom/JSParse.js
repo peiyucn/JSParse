@@ -268,14 +268,24 @@
     };
 
     var minFunc = function (nullMode, number1, number2) {
-        if (typeof number1 != "number" || typeof number2 != "number") {
+        if (isUndefinedOrNullOrEmpty(number1) ||
+            isUndefinedOrNullOrEmpty(number2)) {
+            return nullMode;
+        }
+        if (typeof number1 != "number" ||
+            typeof number2 != "number") {
             throw new Error("JSParse Exception: Wrong type in Func:min !");
         }
         return number1 < number2 ? number1 : number2;
     };
 
     var maxFunc = function (nullMode, number1, number2) {
-        if (typeof number1 != "number" || typeof number2 != "number") {
+        if (isUndefinedOrNullOrEmpty(number1) ||
+            isUndefinedOrNullOrEmpty(number2)) {
+            return nullMode;
+        }
+        if (typeof number1 != "number" ||
+            typeof number2 != "number") {
             throw new Error("JSParse Exception: Wrong type in Func:min !");
         }
         return number1 < number2 ? number2 : number1;
