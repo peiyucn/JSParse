@@ -503,7 +503,7 @@
         var i;
         for (i = 0; i < props.length; i += 1) {
             tmpVal = tmpVal[props[i]];
-            if (!tmpVal) {
+            if (isUndefinedOrNullOrEmpty(tmpVal)) {
                 return null;
             }
         }
