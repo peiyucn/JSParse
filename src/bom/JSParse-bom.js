@@ -348,10 +348,10 @@
             {"name": "in", "symbol": "in", "rank": "100", "optype": "N", "func": eleInArray},
             {"name": "length", "symbol": "length", "rank": "100", "optype": "N", "func": strLength},
             {"name": "isNaN", "symbol": "isNaN", "rank": "100", "optype": "N", "func": isNotNumber},
-            {"name": "Number", "symbol": "Number", "rank": "100", "optype": "N", "func": parseToNumber},
+            {"name": "number", "symbol": "number", "rank": "100", "optype": "N", "func": parseToNumber},
             {"name": "parseInt", "symbol": "parseInt", "rank": "100", "optype": "N", "func": parseToInt},
             {"name": "parseFloat", "symbol": "parseFloat", "rank": "100", "optype": "N", "func": parseToFloat},
-            {"name": "splitExt", "symbol": "splitExt", "rank": "100", "optype": "N", "func": splitExt},
+            {"name": "split", "symbol": "split", "rank": "100", "optype": "N", "func": splitExt},
             {"name": "min", "symbol": "min", "rank": "100", "optype": "N", "func": minFunc},
             {"name": "max", "symbol": "max", "rank": "100", "optype": "N", "func": maxFunc}
         ],
