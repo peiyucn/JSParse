@@ -318,11 +318,7 @@
                 "optype": "2",
                 "func": calcAND,
                 "sfunc": function (p) {
-                    if (!p) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return !p;
                 }
             },
             {
@@ -332,11 +328,7 @@
                 "optype": "2",
                 "func": calcOR,
                 "sfunc": function (p) {
-                    if (p) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return p;
                 }
             },
             { "name": "IFELSE-1", "symbol": "?", "rank": "10", "optype": "3", "func": calcIFELSE },
