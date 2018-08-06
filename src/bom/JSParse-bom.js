@@ -5,7 +5,7 @@
  */
 
 //JS表达式分析器对象
-;(function (root, factory) {
+; (function (root, factory) {
     root.JSParse = factory();
 }(this, function () {
     // 构造函数
@@ -291,6 +291,30 @@
         return number1 < number2 ? number2 : number1;
     };
 
+    var getCurrentYear = function (nullMode) {
+        return (new Date()).getFullYear();
+    }
+
+    var getCurrentMonth = function (nullMode) {
+        return (new Date()).getMonth() + 1;
+    }
+
+    var getCurrentDay = function (nullMode) {
+        return (new Date()).getDate();
+    }
+
+    var getCurrentHour = function (nullMode) {
+        return (new Date()).getHours();
+    }
+
+    var getCurrentMinute = function (nullMode) {
+        return (new Date()).getMinutes();
+    }
+
+    var getCurrentSecond = function (nullMode) {
+        return (new Date()).getSeconds();
+    }
+
     // 自定义运算 -end ////////////////////////////////////
 
     var GlobalObjs = {
@@ -298,19 +322,19 @@
         "operators": [
 
             // 常规运算符
-            {"name": "NOT", "symbol": "!", "rank": "80", "optype": "1", "func": calcNOT},
-            {"name": "NG", "symbol": "-", "rank": "80", "optype": "1", "func": calcNG},
-            {"name": "MUTI", "symbol": "*", "rank": "70", "optype": "2", "func": calcMUTI},
-            {"name": "DIV", "symbol": "/", "rank": "70", "optype": "2", "func": calcDIV},
-            {"name": "MOD", "symbol": "%", "rank": "70", "optype": "2", "func": calcMOD},
-            {"name": "PLUS", "symbol": "+", "rank": "60", "optype": "2", "func": calcPLUS},
-            {"name": "MINUS", "symbol": "-", "rank": "60", "optype": "2", "func": calcMINUS},
-            {"name": "LT", "symbol": "<", "rank": "50", "optype": "2", "func": calcLT},
-            {"name": "LE", "symbol": "<=", "rank": "50", "optype": "2", "func": calcLE},
-            {"name": "GT", "symbol": ">", "rank": "50", "optype": "2", "func": calcGT},
-            {"name": "GE", "symbol": ">=", "rank": "50", "optype": "2", "func": calcGE},
-            {"name": "EQ", "symbol": "==", "rank": "40", "optype": "2", "func": calcEQ},
-            {"name": "NEQ", "symbol": "!=", "rank": "40", "optype": "2", "func": calcNEQ},
+            { "name": "NOT", "symbol": "!", "rank": "80", "optype": "1", "func": calcNOT },
+            { "name": "NG", "symbol": "-", "rank": "80", "optype": "1", "func": calcNG },
+            { "name": "MUTI", "symbol": "*", "rank": "70", "optype": "2", "func": calcMUTI },
+            { "name": "DIV", "symbol": "/", "rank": "70", "optype": "2", "func": calcDIV },
+            { "name": "MOD", "symbol": "%", "rank": "70", "optype": "2", "func": calcMOD },
+            { "name": "PLUS", "symbol": "+", "rank": "60", "optype": "2", "func": calcPLUS },
+            { "name": "MINUS", "symbol": "-", "rank": "60", "optype": "2", "func": calcMINUS },
+            { "name": "LT", "symbol": "<", "rank": "50", "optype": "2", "func": calcLT },
+            { "name": "LE", "symbol": "<=", "rank": "50", "optype": "2", "func": calcLE },
+            { "name": "GT", "symbol": ">", "rank": "50", "optype": "2", "func": calcGT },
+            { "name": "GE", "symbol": ">=", "rank": "50", "optype": "2", "func": calcGE },
+            { "name": "EQ", "symbol": "==", "rank": "40", "optype": "2", "func": calcEQ },
+            { "name": "NEQ", "symbol": "!=", "rank": "40", "optype": "2", "func": calcNEQ },
             {
                 "name": "AND",
                 "symbol": "&&",
@@ -331,21 +355,27 @@
                     return p;
                 }
             },
-            {"name": "IFELSE-1", "symbol": "?", "rank": "10", "optype": "3", "func": calcIFELSE},
-            {"name": "IFELSE-2", "symbol": ":", "rank": "10", "optype": "3", "func": calcIFELSE},
-            {"name": "IFELSE", "symbol": "?:", "rank": "10", "optype": "3", "func": calcIFELSE},
+            { "name": "IFELSE-1", "symbol": "?", "rank": "10", "optype": "3", "func": calcIFELSE },
+            { "name": "IFELSE-2", "symbol": ":", "rank": "10", "optype": "3", "func": calcIFELSE },
+            { "name": "IFELSE", "symbol": "?:", "rank": "10", "optype": "3", "func": calcIFELSE },
 
             // 自定义运算符（函数）
-            {"name": "testFunc", "symbol": "testFunc", "rank": "100", "optype": "N", "func": testFunc},
-            {"name": "in", "symbol": "in", "rank": "100", "optype": "N", "func": eleInArray},
-            {"name": "length", "symbol": "length", "rank": "100", "optype": "N", "func": strLength},
-            {"name": "isNaN", "symbol": "isNaN", "rank": "100", "optype": "N", "func": isNotNumber},
-            {"name": "number", "symbol": "number", "rank": "100", "optype": "N", "func": parseToNumber},
-            {"name": "parseInt", "symbol": "parseInt", "rank": "100", "optype": "N", "func": parseToInt},
-            {"name": "parseFloat", "symbol": "parseFloat", "rank": "100", "optype": "N", "func": parseToFloat},
-            {"name": "split", "symbol": "split", "rank": "100", "optype": "N", "func": splitExt},
-            {"name": "min", "symbol": "min", "rank": "100", "optype": "N", "func": minFunc},
-            {"name": "max", "symbol": "max", "rank": "100", "optype": "N", "func": maxFunc}
+            { "name": "testFunc", "symbol": "testFunc", "rank": "100", "optype": "N", "func": testFunc },
+            { "name": "in", "symbol": "in", "rank": "100", "optype": "N", "func": eleInArray },
+            { "name": "length", "symbol": "length", "rank": "100", "optype": "N", "func": strLength },
+            { "name": "isNaN", "symbol": "isNaN", "rank": "100", "optype": "N", "func": isNotNumber },
+            { "name": "number", "symbol": "number", "rank": "100", "optype": "N", "func": parseToNumber },
+            { "name": "parseInt", "symbol": "parseInt", "rank": "100", "optype": "N", "func": parseToInt },
+            { "name": "parseFloat", "symbol": "parseFloat", "rank": "100", "optype": "N", "func": parseToFloat },
+            { "name": "split", "symbol": "split", "rank": "100", "optype": "N", "func": splitExt },
+            { "name": "min", "symbol": "min", "rank": "100", "optype": "N", "func": minFunc },
+            { "name": "max", "symbol": "max", "rank": "100", "optype": "N", "func": maxFunc },
+            { "name": "getYear", "symbol": "getYear", "rank": "100", "optype": "N", "func": getCurrentYear },
+            { "name": "getMonth", "symbol": "getMonth", "rank": "100", "optype": "N", "func": getCurrentMonth },
+            { "name": "getDay", "symbol": "getDay", "rank": "100", "optype": "N", "func": getCurrentDay },
+            { "name": "getHours", "symbol": "getHours", "rank": "100", "optype": "N", "func": getCurrentHour },
+            { "name": "getMinutes", "symbol": "getMinutes", "rank": "100", "optype": "N", "func": getCurrentMinute },
+            { "name": "getSeconds", "symbol": "getSeconds", "rank": "100", "optype": "N", "func": getCurrentSecond }
         ],
 
         // 左括号
@@ -949,18 +979,20 @@
     // 表达式计算接口
     CalcNode.prototype.calc = function (nullMode, inputObj) {
         var pNode = this;// 该方法必须通过Node对象调用
-        // 如果节点没有子节点，那么获取节点值准备计算
+        // 如果节点没有子节点，那么获取节点值(或无参数自定义函数)准备计算
 
         if (pNode.pChildNodes == null || pNode.pChildNodes.length <= 0) {
-            // 将叶子节点的变量替换为参数输入值以准备计算
-            var paramValue = tryGetEleValue(inputObj, pNode.selfObj);
+            if (Object.prototype.toString.call(pNode.selfObj.func) !== "[object Function]") {
+                // 如果叶子节点不是自定义函数，将叶子节点的变量替换为参数输入值以准备计算。
+                var paramValue = tryGetEleValue(inputObj, pNode.selfObj);
 
-            if (typeof paramValue == "undefined" &&
-                pNode.rootExpression == pNode.selfObj) {
-                return nullMode;
+                if (typeof paramValue == "undefined" &&
+                    pNode.rootExpression == pNode.selfObj) {
+                    return nullMode;
+                }
+                return paramValue;
             }
-
-            return paramValue;
+            // 如果叶子节点是自定义函数，不进入此条件分支，直接参与计算。
         }
 
         // 如果有子节点说明该节点为操作符

@@ -21,14 +21,6 @@ A JS Logical expressions calculator components.
 
 ## Downloads 下载
 
-> Not Support BOM
-
-[![JSParse.js][download-image]][download-url]
-
-[![JSParse.min.js][download-min-image]][download-min-url]
-
-> Support BOM
-
 [![JSParse-bom.js][download-bom-image]][download-bom-url]
 
 [![JSParse-bom.min.js][download-bom-min-image]][download-bom-min-url]
@@ -62,6 +54,7 @@ console.log(result);
 ## API 方法
 
 ### JSParse.build(expression);
+
   说明：根据表达式字符串生成可用于计算的表达式语法树。
   
   params 输入参数：
@@ -120,16 +113,23 @@ console.log(result);
 
 Already supported 已经支持的自定义函数：
 
-    in(arr,ele) //检查ele是否在数组arr中存在，返回boolean。
-    length(str) //检查字符串str长度，返回int。
-    isNaN(val)  //实现js的isNaN方法。
-    number(val) //实现js的Number方法。
-    parseInt(str,radix) //实现js的parseInt方法。
-    parseFloat(str) //实现js的parseFloat方法。
-    split(str, splitChar, returnIndex) //实现字符串分隔方法，指定返回分隔后的某个字符。
-    min(number1, number2) //实现数值比较，返回最小者。
-    max(number1, number2) //实现数值比较，返回最大者。
-
+|函数<br>（function）|说明<br>（description）|
+|:-----|:-----|
+|in(arr,ele)|检查ele是否在数组arr中存在，返回boolean。|
+|length(str)|检查字符串str长度，返回int。|
+|isNaN(val)|实现js的isNaN方法。|
+|number(val)|实现js的Number方法。|
+|parseInt(str,radix)|实现js的parseInt方法。|
+|parseFloat(str)|实现js的parseFloat方法。|
+|split(str, splitChar, returnIndex)|实现字符串分隔方法，指定返回分隔后的某个字符。|
+|min(number1, number2)|实现数值比较，返回最小者。|
+|max(number1, number2)|实现数值比较，返回最大者。|
+|getYear()|获取当前年份，返回number。|
+|getMonth()|获取当前月份，返回number。|
+|getDay()|获取当前日期，返回number。|
+|getHours()|获取当前小时，返回number。|
+|getMinutes()|获取当前分钟，返回number。|
+|getSeconds()|获取当前秒，返回number。|
 
 [travis-image]: https://travis-ci.org/peiyucn/JSParse.svg?branch=master
 [travis-url]: https://travis-ci.org/peiyucn/JSParse

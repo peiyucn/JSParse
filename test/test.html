@@ -12,6 +12,7 @@
     <h1>JSParse Test (Include BOM)</h1>
     <hr>
     <div id="testResult">
+
     </div>
 
     <script>
@@ -33,7 +34,7 @@
         var exp13 = new ExpTest("in(arTest,eleTest1) == a<b", true);
         var exp14 = new ExpTest("in(arTest,eleTest2) == a<b", false);
         var exp15 = new ExpTest("length(lenTest1) - 5", 2);
-        var exp16 = new ExpTest("asdf", false);
+        var exp16 = new ExpTest("asdf", "jkl;");
         var exp17 = new ExpTest("e>f", false);
         var exp18 = new ExpTest("true", true);
         var exp19 = new ExpTest("", false);
@@ -44,7 +45,7 @@
         var exp24 = new ExpTest("1>2?true:false", false);
         var exp25 = new ExpTest("a*(b+c)>a+b*c?a+b:a+c", 4);
         var exp26 = new ExpTest("isNaN(test) ? a : b", 2);
-        var exp27 = new ExpTest("Number(g)-a*b", 1022.22);
+        var exp27 = new ExpTest("number(g)-a*b", 1022.22);
         var exp28 = new ExpTest("isNaN(parseFloat(g))", false);
         var exp29 = new ExpTest("isNaN(parseInt(h))", true);
         var exp30 = new ExpTest("a/b+c*d", 12.5);
@@ -65,10 +66,11 @@
         var exp45 = new ExpTest("d%3", 1);
         var exp46 = new ExpTest("indSSProvince != 310000", true);
         var exp47 = new ExpTest("amount > 10000", true);
-        var exp48 = new ExpTest("splitExt('10-Y','-',1)", "Y");
-        var exp49 = new ExpTest("splitExt('20-A','-',0)", "20");
+        var exp48 = new ExpTest("split('10-Y','-',1)", "Y");
+        var exp49 = new ExpTest("split('20-A','-',0)", "20");
         var exp50 = new ExpTest("min(10,20)", 10);
         var exp51 = new ExpTest("max(10,20)", 20);
+        var exp52 = new ExpTest("getYear()==2018 && getMonth()==8 && getDay()==6 && getHours()==17", true);
 
         var arExpTestOne = [];
         var arExp =
@@ -83,17 +85,17 @@
                 exp36, exp37, exp38, exp39, exp40,
                 exp41, exp42, exp43, exp44, exp45,
                 exp46, exp47, exp48, exp49, exp50,
-                exp51
+                exp51, exp52
             ];
 
         var calcVars = {};
 
         calcVars["prd"] = {
-            "prd568":{
-                "amount":10000
+            "prd568": {
+                "amount": 10000
             },
-            "prd569":{
-                "amount":10000
+            "prd569": {
+                "amount": 10000
             }
         };
         calcVars["a"] = 1;
@@ -101,6 +103,7 @@
         calcVars["c"] = 3;
         calcVars["d"] = 4;
         calcVars["test"] = 2;
+        calcVars["asdf"] = "jkl;"
         calcVars["arTest"] = ["a", "b", "c", "d"];
         calcVars["eleTest1"] = "a";
         calcVars["eleTest2"] = "e";
@@ -111,11 +114,6 @@
         calcVars["h"] = "test1";
         calcVars["indSSProvince"] = 123;
         calcVars["amount"] = 10001;
-        calcVars["splitTest1"] = "10-Y";
-        calcVars["splitTest2"] = "20-A";
-        calcVars["separator"] = "-";
-        calcVars["splitTest1Idx"] = 1;
-        calcVars["splitTest2Idx"] = 0;
 
         var testPlace = document.getElementById("testResult");
 
