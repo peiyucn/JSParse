@@ -71,6 +71,7 @@
         var exp50 = new ExpTest("min(10,20)", 10);
         var exp51 = new ExpTest("max(10,20)", 20);
         var exp52 = new ExpTest("getYear()==2018 && getMonth()==8 && getDay()==6 && getHours()==17", true);
+        var exp53 = new ExpTest("(a-b)<0?\'负数\':\'正数\'", '负数');
 
         var arExpTestOne = [];
         var arExp =
@@ -85,7 +86,7 @@
                 exp36, exp37, exp38, exp39, exp40,
                 exp41, exp42, exp43, exp44, exp45,
                 exp46, exp47, exp48, exp49, exp50,
-                exp51, exp52
+                exp51, exp52, exp53
             ];
 
         var calcVars = {};
