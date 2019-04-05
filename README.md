@@ -1,13 +1,13 @@
 # JSParse
 
-[![build status][travis-image]][travis-url] [![GitHub release][release-image]][release-url] [![GitHub license][license-image]][license-url]
-[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+[![build status][travis-image]][travis-url]
+[![GitHub release][release-image]][release-url]
+[![GitHub license][license-image]][license-url]
+[![996.icu][996.icu-image]][996.icu-url]
 
 A JS Logical expressions calculator components.
 
 一个JS实现的逻辑运算表达式计算器组件。
-
-<!-- TOC -->autoauto- [Downloads 下载](#downloads-下载)auto- [Usage 调用示例](#usage-调用示例)auto- [API 方法](#api-方法)auto    - [JSParse.build(expression);](#jsparsebuildexpression)auto    - [CalcNode.calc(nullMode, calcVars)](#calcnodecalcnullmode-calcvars)auto    - [CalcNode.toString()](#calcnodetostring)auto- [Supported Operators 已支持的运算符](#supported-operators-已支持的运算符)auto- [Custom Operators 可扩展的自定义运算符](#custom-operators-可扩展的自定义运算符)autoauto<!-- /TOC -->
 
 ## Downloads 下载
 
@@ -127,6 +127,8 @@ Already supported 已经支持的自定义函数：
 [release-url]: https://github.com/peiyucn/JSParse/releases/
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: https://raw.githubusercontent.com/peiyucn/JSParse/master/LICENSE
+[996.icu-image]: https://img.shields.io/badge/link-996.icu-red.svg
+[996.icu-url]: https://996.icu
 [download-image]: https://img.shields.io/badge/Code-JSParse.js-brightgreen.svg
 [download-url]: https://peiyucn.github.io/JSParse/src/nobom/JSParse.js
 [download-min-image]: https://img.shields.io/badge/Code-JSParse.min.js-brightgreen.svg
